@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#title{
+    color: white;
+    margin-left: 10%;
+}
+fieldset {
+    color:White;
+    border: 0;
+}

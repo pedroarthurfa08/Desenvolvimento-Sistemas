@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Guns</title>
+    <link rel="stylesheet" type="text/css" href="form.css"
+</head>
+<body bgcolor="black" text="ffffff" link="ffffff" vlink="ffffff" alink="blue"></body>
+<body>
+    <div>
+        <h1 id="title">Formulário</h1>
+        <p>Preeencha o Formulário a seguir:</p>
+
+    </div>
+
+    <form>
+        <fieldset class="grupo">
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" name="none" id="nome" required>
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+
+            <div>
+                <label for="idade">Idade:</label>
+                <input type="text" name="idade" id="idade" required>
+            </div>
+
+            <div>
+                <label for="pais">País:</label>
+                <input type="text" name="pais" id="pais" required>
+            </div>
+
+         </fieldset>
+        <div>
+            <label>Gostou do Site:</label>
+            <label>
+                <input type="radio" nome="gostoudosite" value="Sim">Sim
+            </label>
+
+            <label>
+                <input type="radio" nome="gostoudosite" value="Não">Não
+            </label>
+
+            <lavel>
+                <input type="radio" nome="gostoudosite" value="prefironaodizer">Prefiro Não Dizer
+            </lavel>
+        </div>
+
+        <div>
+            <br>
+            <label>Caso a resposta não tenha sido "Sim" o que pode ser melhorado?</label>
+            <textarea row="5" style="width: 26em;" id="melhorado" name="melhorado"></textarea>
+        </div>
+        <button class="button" type="submit">Concluído</button>
+    </form>
+    <video width="320" height="320" autoplay controls src="Guns N' Roses - Don't Cry.mp4" type="video/mp4"></video>
+</body>
+</html>
