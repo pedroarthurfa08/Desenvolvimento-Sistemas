@@ -1,2 +1,2 @@
-# Curso_Tec_Desenvolvimento_Sistemas
+# Curso Técnico Desenvolvimento Sistemas
  
