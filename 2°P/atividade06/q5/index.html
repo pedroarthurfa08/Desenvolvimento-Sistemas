@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação de Senha</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="password"] {
+            padding: 8px;
+            width: 300px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            display: none; /* Inicialmente escondido */
+        }
+    </style>
+</head>
+<body>
+    <h1>Validação de Senha</h1>
+    <label for="password">Digite sua senha:</label>
+    <input type="password" id="password" placeholder="Digite uma senha..." />
+    <p class="error-message" id="errorMessage">A senha deve ter pelo menos 8 caracteres.</p>
+
+    <script src="script.js"></script>
+</body>
+</html>

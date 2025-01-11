@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="meuParagrafo">Este é um parágrafo</p>
+
+    <script>
+        document.getElementById('meuParagrafo').innerHTML = "O conteúdo foi alterado!";
+        var novoConteudo = document.getElementById("meuParagrafo").innerHTML;
+        document.write("<p>Novo conteúdo: " + novoConteudo + "</p>")
+    </script>
+</body>
+</html>

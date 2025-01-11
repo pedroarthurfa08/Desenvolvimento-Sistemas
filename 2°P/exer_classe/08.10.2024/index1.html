@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta CEP</title>
+</head>
+<body>
+    <h2>Consultar Endereço pelo CEP</h2>
+    <label for="cep">Digite o CEP:</label>
+    <input type="text" id="cep" placeholder="00000-000">
+    <button onclick="consultarCep()">Consultar</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        async function consultarCep() {
+            const cep = document.getElementById('cep').value;
+
+            if (!cep.match(/^\d{5}-?\d{3}$/)) {
+                document.getElementById('resultado').innerHTML = "CEP inválido!";
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
+
+                if (data.erro) {
+                    document.getElementById('resultado').innerHTML = "CEP não encontrado!";
+                } else {
+                    document.getElementById('resultado').innerHTML = `
+                        <p><strong>Endereço:</strong> ${data.logradouro}</p>
+                        <p><strong>Bairro:</strong> ${data.bairro}</p>
+                        <p><strong>Cidade:</strong> ${data.localidade}</p>
+                        <p><strong>Estado:</strong> ${data.uf}</p>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('resultado').innerHTML = "Erro ao consultar o CEP!";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>To-Do List</h1>
+
+    <div style="margin-bottom: 20px;">
+        <label for="taskDescription">Descrição da Tarefa:</label>
+        <input type="text" id="taskDescription" placeholder="Digite a descrição da tarefa">
+
+        <label for="taskCompletion">% Concluído:</label>
+        <select id="taskCompletion">
+            <option value="0">0%</option>
+            <option value="10">10%</option>
+            <option value="20">20%</option>
+            <option value="30">30%</option>
+            <option value="40">40%</option>
+            <option value="50">50%</option>
+            <option value="60">60%</option>
+            <option value="70">70%</option>
+            <option value="80">80%</option>
+            <option value="90">90%</option>
+            <option value="100">100%</option>
+        </select>
+
+        <button id="addTaskButton">Adicionar Tarefa</button>
+    </div>
+
+    <table border="1" id="taskTable" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>% Concluído</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As tarefas serão adicionadas aqui -->
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="titulo">Título original</h1>
+   
+    <script>
+        /*  Aprendemos:
+            1) criar uma tag script
+            2) que a página tem uma variável chamada document
+            3) que podemos escrever no documento com o método write
+            4) que podemos criar variáveis com a palavra var
+            5) que podemos acessar as tags do documento com o método/função getElementById
+            6) que podemos acessar o conteúdo de uma tag com a propriedade innerHTML
+        */
+         document.write('<h2>hello world</h2>');
+         let nome = 'Ely';
+ 
+         document.write(nome);
+ 
+         let h1 = document.getElementById('titulo');
+         document.write('<br>O título do h1 é: ' + h1.innerHTML);
+         h1.innerHTML = 'Novo título - versão melhorada';
+         document.writeln('<br>O novo título é: ' + h1.innerHTML);
+
+         let x = 10;
+         let y = 20
+         let z = x + y;         
+         document.write('<br>Resultado da soma: ' + z);
+    </script>
+</body>
+
+</html>

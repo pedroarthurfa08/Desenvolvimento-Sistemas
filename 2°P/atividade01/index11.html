@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endereço de Parágrafo</title>
+</head>
+<body>
+    <h1>Informações de Endereço</h1>
+    
+    <p id="logradouro">Rua Três Andares</p>
+    <p id="numero">9743</p>
+    <p id="bairro">Oriente</p>
+    <p id="complemento">Divino Posto</p>
+    <p id="cidade">Parnaíba</p>
+    
+    <button onclick="exibirEndereco()">Exibir Endereço Completo</button>
+
+    <p id="enderecoCompleto"></p>
+
+    <script>
+        function exibirEndereco() {
+            var logradouro = document.getElementById("logradouro").innerHTML;
+            var numero = document.getElementById("numero").innerHTML;
+            var bairro = document.getElementById("bairro").innerHTML;
+            var complemento = document.getElementById("complemento").innerHTML;
+            var cidade = document.getElementById("cidade").innerHTML;
+
+            var enderecoCompleto = logradouro + ", " + numero + ", " + bairro + ", " + complemento + ", " + cidade;
+
+            document.getElementById("enderecoCompleto").innerHTML = enderecoCompleto;
+        }
+    </script>
+
+</body>
+</html>

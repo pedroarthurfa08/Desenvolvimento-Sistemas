@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Criação e exclusão de elementos</h1>
+   
+    <h2>Criando um parágrafo</h2>
+    <input id = "textoParagrafo" type="text" placeholder="Digite o texto do novo parágrafo.">
+    <button id = "botaoAdicionar">Adicionar parágrafo</button>
+    <div id = "divParagrafos"></div>
+
+    <h2>Removendo elementos da página</h2>
+    <input id = "textoId" type="text" placeholder="Digite o id do elemento.">
+    <button id = "botaoExcluir">Excluir elemento</button>
+    <div id = "divElementos">
+        <h3 id = "elemento1">h3 - id: elemento1</h3>
+        <p>A lista abaixo tem id: elemento2</p>
+        <ul id = "elemento2">
+            <li>maçã</li>
+            <li>banana</li>
+            <li>melão</li>
+        </ul>
+        <a id = "elemento3" href = "">Link - elemento3</a>
+    </div>
+
+    <br><br><br>
+
+    <h2>Modificando atributo</h2>
+    <input id = "textoLink" type="text" placeholder="Digite um endereço WEB">
+    <button id = "botaoEndereco">Mudar endereço do link</button>
+    <br>
+    <a href = "" id = "link">Clique para ir pro novo endereço</a>
+
+    <br><br><br>
+
+    <h2>Adicionando e removendo opções de um select</h2>
+    <input type="text" id = "novaOpcao" >
+    <button id = "botaoAdicionarOpcao">Adicionar opção</button>
+    <br>
+    <select size="10" id = "select">
+        <option>Opções disponíveis</option>
+    </select>
+    <br>
+    <button id = "botaoRemoverOpcao">Remover opção selecionada</button>
+
+
+</body>
+</html>
