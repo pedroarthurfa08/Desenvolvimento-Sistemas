@@ -1,2 +1,2 @@
-#primeiro código 
+#primeiro código
 print("Olá mundo!!")

@@ -1,0 +1,12 @@
+#alguma coisa que gosta de fazer 
+print("Eu gosto de lê livros")
+print("_" *44)
+print("|       Bora         ||          que       |")
+print("|                    ||                    |")
+print("|                    ||    atrás           |")
+print("|        pra         ||                    |")
+print("|                    ||              ter   |")
+print("|                    ||                    |")
+print("|      frente        ||        gente       |")
+print("|                    ||                    |")
+print("|"+"_" *20 +"|"+"|"+"_"*20+"|")
