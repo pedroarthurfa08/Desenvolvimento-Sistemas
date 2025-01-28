@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busca Pokémon</title>
+    <title>Busca de Carros</title>
     <link rel="stylesheet" href="style.css">
-    <script src="scrpts.js"></script>
+    <script defer src="scripts.js"></script>
 </head>
 <body>
     <div class="search-container">
-        <h1>Busca Pokémon</h1>
-        <input type="text" id="searchInput" placeholder="Nome ou número do Pokémon">
-        <button onclick="searchPokemon()">Buscar</button>
+        <h1>Busca de Carros</h1>
+        <div class="search-inputs">
+            <select id="makeSelect">
+                <option value="">Selecione a Marca</option>
+            </select>
+            <select id="yearSelect">
+                <option value="">Selecione o Ano</option>
+            </select>
+            <button onclick="searchModels()">Buscar</button>
+        </div>
     </div>
-    <div id="result"></div>
+    <div id="results" class="cars-grid"></div>
+
 </body>
 </html>
