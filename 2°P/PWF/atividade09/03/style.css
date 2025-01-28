@@ -1,20 +1,55 @@
-*{
-    margin: 0;
-    padding: 0;
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
 }
-body{
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+input {
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+}
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff5555;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #ff3333;
+}
+.pokemon-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-top: 20px;
+}
+.pokemon-card img {
+    width: 200px;
+    height: 200px;
+}
+.error {
+    color: red;
+    text-align: center;
+}
+.types {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
 }
-hr{
-    width: 50vw;
-    margin: 10px;
-}
-.m-10{
-    margin: 10px;
-}
-li{
-    display: flex;
-    flex-direction: column;
+.type {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: #666;
 }
