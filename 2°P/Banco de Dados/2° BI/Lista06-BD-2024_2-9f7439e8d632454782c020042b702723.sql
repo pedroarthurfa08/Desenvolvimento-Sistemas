@@ -1,26 +1,3 @@
-
-/*QUESTÃO 01*/
-INSERT INTO departamentos(numero_departamento, nome)
-VALUES (101, 'vendas');
-INSERT INTO departamentos(numero_departamento, nome)
-VALUES (202, 'estoque');
-INSERT INTO departamentos(numero_departamento, nome)
-VALUES (303, 'contabilidade');
-
-/*QUESTÃO 02*/
-INSERT INTO funcionario(cpf, nome, sexo, salario, departamentos)
-VALUES(00000000001,'Paula Ramos', 'F', 4000.00, 'Contabilidade');
-
-/*QUESTÃO 03*/
- 
-
-/
-
-/*INSERT INTO departamentos(numero_departamento, nome)
-VALUES  (101, 'vendas'),
-        (202, 'estoque'),
-        (303, 'contabilidade');
-
 DROP TABLE IF EXISTS funcionarios;
 
 DROP TABLE IF EXISTS departamentos;
@@ -101,3 +78,5 @@ INSERT INTO funcionarios (cpf, nome, sexo, salario, numero_departamento)
 VALUES ('33333333335', 'Vanessa Rocha', 'F', 4400.00, 303);
 
 /* ---------------------------------------------------- */
+
+

@@ -1,0 +1,11 @@
+def test_carro()
+    pass
+
+def test_moto()
+    pass
+
+def test_caminhão()
+    pass
+
+def test_carro()
+    pass
