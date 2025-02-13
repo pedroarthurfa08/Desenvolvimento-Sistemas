@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS clientes (
 -- Criando a tabela produtos
 CREATE TABLE IF NOT EXISTS produtos (
     id_produto NUMERIC(10,0) PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
+    nome VARCHAR(100) NOT NULL,clientes
     preco DECIMAL(10,2) NOT NULL,
     estoque INT NOT NULL
 );
@@ -90,4 +90,35 @@ BEGIN
     END LOOP;
 END $$;
 
+-- Questão 01 --
+select 	nome, preco 
+from 	produtos
+where 	preco >= 10;
 
+-- Questão 02 --
+select 	data_pedido
+from	pedidos
+where 	id_cliente = 2;
+
+-- Questão 03 --
+select 	count(*)
+from 	pedidos
+where	id_cliente = 2;
+
+-- Questão 04 --
+select 	p.nome, pp.quantidade, pp.preco_unitario
+from  	produtos p, pedidos_produtos pp
+where	p.id_produto = pp.id_produto and
+		pp.id_pedido = 1;
+        
+-- Questão 06 --
+select	sum(pp.quantidade * pp.preco_unitario) as total_pedido
+from 	pedidos_produtos pp
+where 	pp.id_pedido = 2;
+
+-- Questão 07 --
+select	sum(pp.quantidade * pp.preco_unitario)
+from	pedidos_produtos pp, pedidos p 	
+where 	p.id_pedido = pp.id_pedido and
+		p.id_cliente = 2;
+		

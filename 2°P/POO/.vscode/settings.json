@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "Atividade12"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
