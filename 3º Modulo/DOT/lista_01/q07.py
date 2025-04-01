@@ -5,6 +5,7 @@ def fatorial(f):
     for i in range(1, f + 1):
         fat = fat * i
     return fat
+
 while True:
     try:
         num = int (input("\nDigite um número:"))

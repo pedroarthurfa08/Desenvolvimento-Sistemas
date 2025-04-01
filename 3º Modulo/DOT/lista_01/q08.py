@@ -10,7 +10,6 @@ def ler_carac():
         else:
             print('\nCaractere inválido. Digite novamente.')
 
-
 while True:
     try:
         n = float(input('Digite um número: '))
