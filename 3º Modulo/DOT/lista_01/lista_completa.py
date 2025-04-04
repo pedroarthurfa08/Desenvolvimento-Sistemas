@@ -203,24 +203,29 @@ while True:
 #a) A função Max recebe como parâmetros de entrada 4  números inteiros e retorna o maior. Se forem iguais retorna qualquer um deles;
 #b) O programa principal lê 4 séries de 4 números a, b, c, d Para cada série lida imprime o maior dos quatro números usando a função Max.
 
-def Max(a, b, c, d):
-    return max(a, b, c, d)
+def maximo(a, b, c, d):
+    print('*************** Função máximo ***************')
+    maior = a
+    if b > maior:
+        maior = b
+    if c > maior:
+        maior = c
+    if d > maior:
+        maior = d
+    return maior
 
-while True:
-    try:
-        for i in range(4):
-            print(f"Série {i+1}:")
-            
-            a = int(input("Digite o número a: "))
-            b = int(input("Digite o número b: "))
-            c = int(input("Digite o número c: "))
-            d = int(input("Digite o número d: "))
-            
-            maior = Max(a, b, c, d)
-            print(f"O maior número é: {maior}\n")
-        break
-    except ValueError:
-        ('\nAlgo de errado não está certo, tente novamente.')
+for i in range(1, 5):
+    while True:
+        try:
+            print(f"\n**** Série de 4 números (Conjunto {i}) ****")
+            num1 = int(input("\nDigite o primeiro número: "))
+            num2 = int(input("\nDigite o segundo número: "))
+            num3 = int(input("\nDigite o terceiro número: "))
+            num4 = int(input("\nDigite o quarto número: "))
+            print("\n----> O maior número é:", maximo(num1, num2, num3, num4))
+            break
+        except ValueError:
+            print("\nErro! Por favor, digite um número inteiro válido.")
 
 #======================================================================================================================================================================================
 
