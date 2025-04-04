@@ -1,12 +1,13 @@
-def encontrar_maior_menor():
-    num1 = int(input("Digite o primeiro número: "))
-    num2 = int(input("Digite o segundo número: "))
-    num3 = int(input("Digite o terceiro número: "))
+function encontrarMaiorMenor() {
+    const num1 = parseInt(prompt("Digite o primeiro número:"));
+    const num2 = parseInt(prompt("Digite o segundo número:"));
+    const num3 = parseInt(prompt("Digite o terceiro número:"));
 
-    maior = max(num1, num2, num3)
-    menor = min(num1, num2, num3)
+    const maior = Math.max(num1, num2, num3);
+    const menor = Math.min(num1, num2, num3);
 
-    print(f"O maior número é: {maior}")
-    print(f"O menor número é: {menor}")
+    alert(`O maior número é: ${maior}`);
+    alert(`O menor número é: ${menor}`);
+}
 
-encontrar_maior_menor()
+encontrarMaiorMenor();
