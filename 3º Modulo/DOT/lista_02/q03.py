@@ -12,7 +12,7 @@ for _ in range(n):
 
 #print(numeros[::-1])
 
-#      or
+    #or
 
 for num in reversed(numeros):
     print(num)
