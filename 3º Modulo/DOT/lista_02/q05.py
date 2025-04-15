@@ -1,21 +1,25 @@
 # 5) Faça um programa que leia duas listas de 10 elementos numéricos cada um e intercale os elementos deste em uma outra lista de 20 elementos.
 
-lista1 = []
-lista2 = []
+def encontrar_maior_menor(lista):
+    if not lista:
+        print("A lista está vazia.")
+        return
 
-for i in range(10):
-    valor = int(input(f"Lista 01 - Valor {i + 1}: "))
-    lista1.append(valor)
+    maior = max(lista)
+    menor = min(lista)
 
-for i in range(10):
-    valor = int(input(f"Lista 02 - Valor {i + 1}: "))
-    lista2.append(valor)
+    posicao_maior = lista.index(maior)
+    posicao_menor = lista.index(menor)
 
-lista_intercalada = []
+    print(f"\nO maior elemento é {maior} e está na posição {posicao_maior}.")
+    print(f"O menor elemento é {menor} e está na posição {posicao_menor}.")
 
-for i in range(10):
-    lista_intercalada.append(lista1[i])
-    lista_intercalada.append(lista2[i]) 
+def coletar_numeros(qnt=15):
+    numeros = []
+    for i in range(qnt):
+        valor = int(input(f"Digite o {i + 1}º valor: "))
+        numeros.append(valor)
+    return numeros
 
-print("Lista intercalada:")
-print(lista_intercalada)
+lista = coletar_numeros()
+encontrar_maior_menor(lista)
