@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bolsa de Valores</title>
+</head>
+<body>
+  <h1>Tabela da Bolsa</h1>
+
+  <table>
+    <tr>
+      <th>Código</th>
+      <th>Data</th>
+      <th>Tipo</th>
+      <th>Quantidade</th>
+      <th>Preço</th>
+      <th>Valor Bruto</th>
+      <th>Valor Líquido</th>
+    </tr>
+    <% listFaturamento.forEach((item) => { %>
+      <tr>
+        <td><%= item[0] %></td>
+        <td><%= item[1] %></td>
+        <td><%= item[2] %></td>
+        <td><%= item[3] %></td>
+        <td>R$ <%= item[4].toFixed(2) %></td>
+        <td>R$ <%= item[5].toFixed(2) %></td>
+        <td>R$ <%= item[6].toFixed(2) %></td>
+      </tr>
+    <% }); %>
+  </table>
+</body>
+</html>
