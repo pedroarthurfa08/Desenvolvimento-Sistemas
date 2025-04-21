@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsa</title>
+</head>
+<body>
+    <div><h1>Cadastro de Operações</h1></div>
+    <div>
+        <form action="/bolsa_resposta" method="post">
+            <label for="data">Data</label>
+            <input type="date" name="data" required><br><br>
+            
+            <label for="codigo">Código</label>
+            <select name="codigo" id="codigo" required>
+                <option value="ITSA4">ITSA4</option>
+                <option value="BBSE3">BBSE3</option>
+                <option value="JSLG3">JSLG3</option>
+            </select><br><br>
+
+            <label>Tipo:</label>
+            <input type="radio" name="tipo" value="compra" required> Compra
+            <input type="radio" name="tipo" value="venda"> Venda<br><br>
+
+            <label for="quantidade">Quantidade</label>
+            <input type="number" name="quantidade" required><br><br>
+
+            <label for="preco">Preço</label>
+            <input type="number" name="preco" step="0.01" required><br><br>
+
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>
