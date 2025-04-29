@@ -1,5 +1,5 @@
 import unittest
-from circulo import area, perimetro
+from q02 import area, perimetro
 
 class TestCirculo(unittest.TestCase):
     def test_area(self):

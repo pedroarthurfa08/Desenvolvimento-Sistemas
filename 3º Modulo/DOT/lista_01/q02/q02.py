@@ -6,4 +6,3 @@ def area(r):
 def perimetro(r):
     p = 3.14 * 2 * r
     return p
-
