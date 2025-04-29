@@ -2,11 +2,3 @@
 
 def celsius(f):
     return ((f-32)/9)*5
-
-while True:
-    try:
-        f = float(input("Digite a temperatura em Celsius: "))
-        print("\no perímetro do cículo é %2f" % celsius(f))
-        break
-    except:
-        print("\nAlgo de errado não está certo, tente novamente.")
