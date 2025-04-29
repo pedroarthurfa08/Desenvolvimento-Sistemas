@@ -16,4 +16,3 @@ def list_todos_iguais():
 
 def list_numeros_negativos():
     assert remover_repetidos([-1, -2, -1, -2 , 0]) == [-1, -2, 0]
-
