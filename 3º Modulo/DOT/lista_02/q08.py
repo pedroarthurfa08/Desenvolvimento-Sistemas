@@ -1,20 +1,33 @@
 # 8) Dada uma lista contendo letras do alfabeto, elabore um programa para verificar quantas vezes ocorreu a letra ‘A’.
 #OBS: Fazer crítica na entrada do caractere para aceitar somente letras.
 
+import unittest
+
 def validar_entrada(entrada):
-    if entrada.isalpha():
-        return True
-    else:
-        return False
+    return entrada.isalpha()
 
-entrada_usuario = input("Digite uma lista de letras (sem espaços ou números): ").strip()
+def contar_letras_a(lista_letras):
+    return lista_letras.count('A')
 
-while not validar_entrada(entrada_usuario):
-    print("Entrada inválida. A lista deve conter apenas letras.")
-    entrada_usuario = input("Digite uma lista de letras (sem espaços ou números): ").strip()
+def main():
+    while True:
+        entrada_usuario = input("Digite uma lista de letras (sem espaços ou números): ").strip().upper()
+        if validar_entrada(entrada_usuario):
+            break
+        print("Entrada inválida. A lista deve conter apenas letras.")
+    
+    lista_letras = list(entrada_usuario)
+    contagem_a = contar_letras_a(lista_letras)
+    print(f"A letra 'A' aparece {contagem_a} vezes na lista.")
 
-lista_letras = list(entrada_usuario.upper())  
+class TestContarLetrasA(unittest.TestCase):
+    def test_contar_letras_a(self):
+        lista_letras = list("ABACA")
+        self.assertEqual(contar_letras_a(lista_letras), 3)
 
-contagem_a = lista_letras.count('A')
+    def test_contar_letras_a_sem_a(self):
+        lista_letras = list("BCDE")
+        self.assertEqual(contar_letras_a(lista_letras), 0)
 
-print(f"A letra 'A' aparece {contagem_a} vezes na lista.")
+unittest.main(exit=False)
+main()
