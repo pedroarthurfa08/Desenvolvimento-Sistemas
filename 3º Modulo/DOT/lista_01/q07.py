@@ -3,20 +3,12 @@
 import unittest
 
 def fatorial(f):
+    if f < 0:
+        raise ValueError("Não existe fatorial de número negativo.")
     fat = 1
     for i in range(1, f + 1):
         fat *= i
     return fat
-
-if __name__ == '__main__':
-    try:
-        num = int(input("\nDigite um número: "))
-        if num < 0:
-            print("\nNão existe fatorial de número negativo.")
-        else:
-            print(f"\nO fatorial de {num} é: {fatorial(num)}")
-    except ValueError:
-        print("\nAlgo de errado não está certo, tente novamente.")
 
 class TestFatorial(unittest.TestCase):
     def test_fatorial_0(self):
@@ -30,3 +22,18 @@ class TestFatorial(unittest.TestCase):
 
     def test_fatorial_7(self):
         self.assertEqual(fatorial(7), 5040)
+
+    def test_fatorial_negativo(self):
+        with self.assertRaises(ValueError):
+            fatorial(-1)
+
+if __name__ == '__main__':
+    unittest.main(exit=False)
+
+    while True:
+        try:
+            num = int(input("\nDigite um número: "))
+            print(f"\nO fatorial de {num} é: {fatorial(num)}")
+            break
+        except ValueError as e:
+            print(f"\n{e}")

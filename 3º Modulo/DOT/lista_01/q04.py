@@ -4,22 +4,8 @@ import unittest
 
 def avaliacao(x1, x2):
     media = (x1 + x2) / 2
-    return media >= 6, media
-
-if __name__ == '__main__':
-    try:
-        x1 = float(input("\nDigite a primeira nota: "))
-        x2 = float(input("\nDigite a segunda nota: "))
-
-        aprovado, media = avaliacao(x1, x2)
-
-        if aprovado:
-            print(f"\nA média do aluno é {media:.2f}, PARABÉNS! Você foi aprovado!")
-        else:
-            print(f"\nA média do aluno é {media:.2f}, tente novamente.")
-
-    except ValueError:
-        print("\nAlgo de errado não está certo, tente novamente.")
+    aprovado = media >= 6
+    return aprovado, media
 
 class TestAvaliador(unittest.TestCase):
     def test_aprovado(self):
@@ -36,3 +22,24 @@ class TestAvaliador(unittest.TestCase):
         aprovado, media = avaliacao(6, 6)
         self.assertTrue(aprovado)
         self.assertEqual(media, 6.0)
+
+    def test_notas_negativas(self):
+        aprovado, media = avaliacao(-2, -3)
+        self.assertFalse(aprovado)
+        self.assertEqual(media, -2.5)
+
+if __name__ == '__main__':
+    unittest.main(exit=False)
+
+    while True:
+        try:
+            x1 = float(input("\nDigite a primeira nota: "))
+            x2 = float(input("\nDigite a segunda nota: "))
+            aprovado, media = avaliacao(x1, x2)
+            if aprovado:
+                print(f"\nA média do aluno é {media:.2f}. PARABÉNS! Você foi aprovado!")
+            else:
+                print(f"\nA média do aluno é {media:.2f}. Tente novamente.")
+            break
+        except ValueError:
+            print("\nAlgo de errado não está certo, tente novamente.")

@@ -15,16 +15,6 @@ def ler_carac(input_func=input):
 def ao_cubo(n):
     return n ** 3
 
-if __name__ == '__main__':
-    try:
-        while True:
-            numero = float(input('Digite um número: '))
-            print(f'{numero} ao cubo é {ao_cubo(numero)}')
-            if ler_carac() == 'N':
-                break
-    except ValueError:
-        print('\nAlgo de errado não está certo, tente novamente.')
-
 class TestCuboEEntrada(unittest.TestCase):
     def test_ao_cubo_positivo(self):
         self.assertEqual(ao_cubo(3), 27)
@@ -42,5 +32,17 @@ class TestCuboEEntrada(unittest.TestCase):
         self.assertEqual(ler_carac(lambda _: 'N'), 'N')
 
     def test_ler_carac_invalido_then_s(self):
-        inputs = iter(['x', 'S'])  # primeiro inválido, depois válido
+        inputs = iter(['x', 'S']) 
         self.assertEqual(ler_carac(lambda _: next(inputs)), 'S')
+
+if __name__ == '__main__':
+    unittest.main(exit=False)
+
+    while True:
+        try:
+            numero = float(input('Digite um número: '))
+            print(f'{numero} ao cubo é {ao_cubo(numero)}')
+            if ler_carac() == 'N':
+                break
+        except ValueError:
+            print('\nAlgo de errado não está certo, tente novamente.')
