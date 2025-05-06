@@ -4,24 +4,41 @@
 #- Se o número de lados for igual a 5, escrever PENTÁGONO.
 #Observação: Considere que o usuário só informará os valores 3, 4 ou 5.
 
+import unittest
+
 def poligono(lado, medida_lado):
     if lado == 3:
-        triangulo = medida_lado *3
-        return f'TRIÂNGULO {triangulo:.0f}'
+        return f'TRIÂNGULO {(medida_lado * 3):.0f}'
     elif lado == 4:
-        quadrado = medida_lado ** 2
-        return f'QUADRADO {quadrado:.0f}'
+        return f'QUADRADO {(medida_lado ** 2):.0f}'
     elif lado == 5:
-        return f'PENTÁGONO'
+        return 'PENTÁGONO'
     else:
-        return f'Algo de errado não está certo, tente novamente.'
+        return 'Algo de errado não está certo, tente novamente.'
 
-while True:
+if __name__ == '__main__':
     try:
-        lado = int(input('\nDigite a quantidade de lados: '))
-        medida_lado = float(input('\nQuantos centímetros tem um lado: '))
-        if lado > 0 and medida_lado > 0:
-            print(poligono(lado, medida_lado))
-            break
-    except:
-        print('Algo de errado não está certo, tente novamente.')
+        lado = int(input('\nDigite a quantidade de lados (3, 4 ou 5): '))
+        if lado not in [3, 4, 5]:
+            print('\nOpção inválida! Use 3, 4 ou 5.')
+        else:
+            medida = float(input('\nQuantos centímetros tem um lado: '))
+            resultado = poligono(lado, medida)
+            print(f'\nResultado: {resultado}')
+    except ValueError:
+        print('\nAlgo de errado não está certo, tente novamente mais tarde.')
+
+class TestPoligono(unittest.TestCase):
+    def test_triangulo(self):
+        self.assertEqual(poligono(3, 10), "TRIÂNGULO 30")
+
+    def test_quadrado(self):
+        self.assertEqual(poligono(4, 5), "QUADRADO 25")
+
+    def test_pentagono(self):
+        self.assertEqual(poligono(5, 7), "PENTÁGONO")
+
+    def test_valores_invalidos(self):
+        self.assertEqual(poligono(6, 10), "Algo de errado não está certo, tente novamente.")
+        self.assertEqual(poligono(0, 10), "Algo de errado não está certo, tente novamente.")
+        self.assertEqual(poligono(-1, 10), "Algo de errado não está certo, tente novamente.")
