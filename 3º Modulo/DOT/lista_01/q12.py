@@ -1,20 +1,30 @@
-#12. Escreva uma função que recebe, por parâmetro, um valor inteiro e positivo e retorna o somatório desse valor.
+# 12. Escreva uma função que recebe, por parâmetro, um valor inteiro e positivo e retorna o somatório desse valor.
+
+import unittest
+
 def somatorio(n):
     if n <= 0:
-        raise ValueError("\nO número deve ser inteiro e positivo")
-    
-    somador = 0
-    for i in range(1, n + 1):
-        somador += i
-    return somador
+        raise ValueError("O número deve ser inteiro e positivo")
+    return n * (n + 1) // 2
 
-while True:
-    try:
-        num = int(input('\nDigite um número inteiro e positivo: '))
-        if num > 0:
-            print("\nO número digitado tem um somatório igual a ", somatorio(num))
+class TestSomatorio(unittest.TestCase):
+    def test_somatorio_positivo(self):
+        self.assertEqual(somatorio(5), 15)
+
+    def test_somatorio_um(self):
+        self.assertEqual(somatorio(1), 1)
+
+    def test_somatorio_invalido(self):
+        with self.assertRaises(ValueError):
+            somatorio(-1)
+
+if __name__ == '__main__':
+    unittest.main(exit=False)
+
+    while True:
+        try:
+            num = int(input('\nDigite um número inteiro e positivo: '))
+            print(f"\nO número digitado tem um somatório igual a {somatorio(num)}")
             break
-        else:
-            print("\nAlgo de errado não está certo, tente novamente.")
-    except ValueError:
-        print("\nAlgo de errado não está certo, tente novamente.")
+        except ValueError as e:
+            print(f"\n{e}")
