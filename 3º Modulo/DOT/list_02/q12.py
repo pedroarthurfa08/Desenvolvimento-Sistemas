@@ -1,73 +1,72 @@
-# 11) Faça um programa que alimente uma lista com um número de posições definidas pelo usuário.
-# Esta lista deverá armazenar um conjunto de nomes em diferentes posições.
-# Crie um mecanismo para alimentar elementos da lista e pesquisar por um valor existente.
-# =====MENU========
-# 1)Cadastar nome
-# 2)Pesquisar nome
-# 3)Listar todos os nome
-# 0)Sair do programa
-# ——————–
-# Digite sua escolha:_
-# 12) Deseja-se publicar
+# 12) Deseja-se publicar o número de acertos de cada aluno em uma prova em forma de testes. A prova consta de 30 questões, cada uma com cinco alternativas identificadas por A, B, C, D e E. Para isso são dados:
+# o cartão gabarito;
+# o número de alunos da turma;
+#o cartão de respostas para cada aluno, contendo o seu número e suas respostas.
 
 import unittest
 
-def calcular_acertos(gabarito, respostas):
-    return sum(1 for g, r in zip(gabarito, respostas) if g == r)
+def corrigir_prova(gabarito, respostas_aluno):
 
-def ler_gabarito():
-    gabarito = []
-    for i in range(30):
-        while True:
-            resposta = input(f"Digite a resposta da questão {i+1} do gabarito (A, B, C, D ou E): ").strip().upper()
-            if resposta in ['A', 'B', 'C', 'D', 'E']:
-                gabarito.append(resposta)
-                break
-            else:
-                print("Resposta inválida. Por favor, digite A, B, C, D ou E.")
-    return gabarito
+    acertos = 0
+    for i in range(len(gabarito)):
+        if i < len(respostas_aluno) and gabarito[i] == respostas_aluno[i]:
+            acertos += 1
+    return acertos
 
-def ler_respostas_aluno(numero_aluno):
-    respostas = []
-    for i in range(30):
-        while True:
-            resposta = input(f"Digite a resposta da questão {i+1} do aluno {numero_aluno} (A, B, C, D ou E): ").strip().upper()
-            if resposta in ['A', 'B', 'C', 'D', 'E']:
-                respostas.append(resposta)
-                break
-            else:
-                print("Resposta inválida. Por favor, digite A, B, C, D ou E.")
-    return respostas
+def analisar_turma(gabarito, num_alunos, respostas_alunos):
 
-class TestCalcularAcertos(unittest.TestCase):
-    def test_calcular_acertos(self):
-        gabarito = ['A'] * 30
-        respostas = ['A'] * 30
-        self.assertEqual(calcular_acertos(gabarito, respostas), 30)
+    resultados = {}
+    for numero_aluno, respostas in respostas_alunos.items():
+        acertos = corrigir_prova(gabarito, respostas)
+        resultados[numero_aluno] = acertos
+    return resultados
 
-    def test_calcular_acertos_parcial(self):
-        gabarito = ['A'] * 30
-        respostas = ['A'] * 15 + ['B'] * 15
-        self.assertEqual(calcular_acertos(gabarito, respostas), 15)
+class TestCorrigirProva(unittest.TestCase):
+    def test_prova_totalmente_correta(self):
+        gabarito = "ABCDE" * 6
+        respostas = "ABCDE" * 6
+        self.assertEqual(corrigir_prova(gabarito, respostas), 30)
 
-def main():
-    gabarito = ler_gabarito()
-    
-    while True:
-        try:
-            num_alunos = int(input("Digite o número de alunos: "))
-            if num_alunos > 0:
-                break
-            else:
-                print("O número de alunos deve ser maior que 0.")
-        except ValueError:
-            print("Valor inválido. Por favor, digite um número inteiro.")
-            
-    for i in range(num_alunos):
-        respostas_aluno = ler_respostas_aluno(i+1)
-        acertos = calcular_acertos(gabarito, respostas_aluno)
-        print(f"O aluno {i+1} acertou {acertos} questões.")
+    def test_prova_totalmente_incorreta(self):
+        gabarito = "ABCDE" * 6
+        respostas = "EDCBA" * 6
+        self.assertEqual(corrigir_prova(gabarito, respostas), 0)
+
+    def test_prova_parcialmente_correta(self):
+        gabarito = "ABCDE" * 6
+        respostas = "ABCDE" + "XXXXX" * 5
+        self.assertEqual(corrigir_prova(gabarito, respostas), 5)
+
+    def test_respostas_menor_que_gabarito(self):
+        gabarito = "ABCDE" * 6
+        respostas = "ABC"
+        self.assertEqual(corrigir_prova(gabarito, respostas), 3)
+
+    def test_respostas_maior_que_gabarito(self):
+        gabarito = "ABC"
+        respostas = "ABCDE"
+        self.assertEqual(corrigir_prova(gabarito, respostas), 3)
+
+    def test_aluno_nao_responde_nada(self):
+        gabarito = "ABCDE" * 6
+        respostas = ""
+        self.assertEqual(corrigir_prova(gabarito, respostas), 0)
+
+class TestAnalisarTurma(unittest.TestCase):
+    def test_analisar_dois_alunos(self):
+        gabarito = "ABC"
+        respostas = {
+            "1": "ABC",
+            "2": "ABB"
+        }
+        resultados = analisar_turma(gabarito, 2, respostas)
+        self.assertEqual(resultados, {"1": 3, "2": 2})
+
+    def test_analisar_turma_vazia(self):
+        gabarito = "ABC"
+        respostas = {}
+        resultados = analisar_turma(gabarito, 0, respostas)
+        self.assertEqual(resultados, {})
 
 if __name__ == "__main__":
-    unittest.main(exit=False)
-    main()
+    unittest.main()
