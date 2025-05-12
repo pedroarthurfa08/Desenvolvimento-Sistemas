@@ -2,6 +2,27 @@
 
 import unittest
 
+def contar_ocorrencias(lista, valor):
+    return [i for i, x in enumerate(lista) if x == valor]
+
+class TestContarOcorrencias(unittest.TestCase):
+    def test_contar_ocorrencias(self):
+        lista = [1, 2, 3, 2, 4, 2]
+        valor = 2
+        indices = contar_ocorrencias(lista, valor)
+        self.assertEqual(indices, [1, 3, 5])
+
+    def test_contar_ocorrencias_sem_ocorrencias(self):
+        lista = [1, 2, 3, 4, 5]
+        valor = 6
+        indices = contar_ocorrencias(lista, valor)
+        self.assertEqual(indices, [])
+
+if __name__ == "__main__":
+    unittest.main()
+    
+'''import unittest
+
 def ler_lista(tamanho):
     lista = []
     print(f"Digite {tamanho} números inteiros: ")
@@ -52,4 +73,4 @@ class TestContarOcorrencias(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(exit=False)
-    main()
+    main()'''
