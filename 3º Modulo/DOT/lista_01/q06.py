@@ -34,6 +34,36 @@ class TestPoligono(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main(exit=False)
 
+'''import unittest
+
+def poligono(lado, medida_lado):
+    if lado == 3:
+        return f'TRIÂNGULO {(medida_lado * 3):.0f}'
+    elif lado == 4:
+        return f'QUADRADO {(medida_lado ** 2):.0f}'
+    elif lado == 5:
+        return 'PENTÁGONO'
+    else:
+        return 'Algo de errado não está certo, tente novamente.'
+
+class TestPoligono(unittest.TestCase):
+    def test_triangulo(self):
+        self.assertEqual(poligono(3, 10), "TRIÂNGULO 30")
+
+    def test_quadrado(self):
+        self.assertEqual(poligono(4, 5), "QUADRADO 25")
+
+    def test_pentagono(self):
+        self.assertEqual(poligono(5, 7), "PENTÁGONO")
+
+    def test_valores_invalidos(self):
+        self.assertEqual(poligono(6, 10), "Algo de errado não está certo, tente novamente.")
+        self.assertEqual(poligono(0, 10), "Algo de errado não está certo, tente novamente.")
+        self.assertEqual(poligono(-1, 10), "Algo de errado não está certo, tente novamente.")
+
+if __name__ == '__main__':
+    unittest.main(exit=False)
+
     while True:
         try:
             lado = int(input('\nDigite a quantidade de lados (3, 4 ou 5): '))
@@ -45,4 +75,4 @@ if __name__ == '__main__':
                 print(f'\nResultado: {resultado}')
                 break
         except ValueError:
-            print('\nAlgo de errado não está certo, tente novamente.')
+            print('\nAlgo de errado não está certo, tente novamente.')'''
