@@ -1,6 +1,6 @@
 # 11. Faça uma função que recebe, por parâmetro, um valor inteiro e positivo e retorna o número de divisores desse valor.
 
-import unittest
+'''import unittest
 
 def contar_divisores(n):
     if n <= 0:
@@ -37,4 +37,4 @@ if __name__ == '__main__':
             print(f"\nO número digitado tem {contar_divisores(num)} divisores.")
             break
         except ValueError as e:
-            print(f"\n{e}")
+            print(f"\n{e}")'''
