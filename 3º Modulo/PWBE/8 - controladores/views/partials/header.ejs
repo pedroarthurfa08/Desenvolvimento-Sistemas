@@ -1,0 +1,15 @@
+<% if (paginaAtiva === 'home' ) { %>
+  <ul>
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="/operacao/operacoes">Operações</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+  </ul>
+<% } else { %>
+    <% if (paginaAtiva === 'operacoes' ) { %>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a class="active" href="/operacao/operacoes">Operações</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+      </ul>
+    <% } %>
+<% } %>

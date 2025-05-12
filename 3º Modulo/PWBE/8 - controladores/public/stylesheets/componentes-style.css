@@ -1,0 +1,31 @@
+.botao-link {
+  display: inline-block;
+  /* Permite largura e altura definidas */
+  padding: 10px 20px;
+  /* Espaçamento interno */
+  background-color: #007bff;
+  /* Cor de fundo */
+  color: white;
+  /* Cor do texto */
+  text-decoration: none;
+  /* Remove sublinhado padrão do link */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  cursor: pointer;
+  /* Indica que é clicável */
+}
+
+/* Estilos para o botão ao passar o mouse */
+.botao-link:hover {
+  background-color: #0056b3;
+  /* Cor de fundo ao passar o mouse */
+}
+
+.container-botoes {
+  display: flex;
+  /* Permite o uso de flexbox */
+  justify-content: center;
+  /* Centraliza os botões horizontalmente */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

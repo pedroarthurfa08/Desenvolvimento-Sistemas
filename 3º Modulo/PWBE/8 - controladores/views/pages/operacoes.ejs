@@ -1,0 +1,47 @@
+<div>
+    <table>
+        <thead>
+            <th>Data</th>
+            <th>Código do ativo</th>
+            <th>Tipo de operação</th>
+            <th>Quantidade</th>
+            <th>Preço unitário</th>
+            <th>Valor Bruno</th>
+            <th>Taxas B3</th>
+            <th>Valor líquido</th>
+        </thead>
+        <tbody>
+            <% operacoes.forEach(operacao=> { %>
+                <tr>
+                    <td>
+                        <%= operacao.data %>
+                    </td>
+                    <td>
+                        <%= operacao.ativo %>
+                    </td>
+                    <td>
+                        <%= operacao.tipoDeOperacao %>
+                    </td>
+                    <td>
+                        <%= operacao.quantidade %>
+                    </td>
+                    <td>
+                        <%= operacao.preco %>
+                    </td>
+                    <td>
+                        <%= operacao.valorBruto %>
+                    </td>
+                    <td>
+                        <%= operacao.taxaB3 %>
+                    </td>
+                    <td>
+                        <%= operacao.valorLiquido %>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+    <div class="container-botoes">
+        <a class="botao-link" href="/operacao/nova_operacao">Cadastrar nova operação</a>
+    </div>
+</div>
