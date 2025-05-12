@@ -9,6 +9,26 @@ def validar_entrada(entrada):
 def contar_letras_a(lista_letras):
     return lista_letras.count('A')
 
+class TestContarLetrasA(unittest.TestCase):
+    def test_contar_letras_a(self):
+        lista_letras = list("ABACA")
+        self.assertEqual(contar_letras_a(lista_letras), 3)
+
+    def test_contar_letras_a_sem_a(self):
+        lista_letras = list("BCDE")
+        self.assertEqual(contar_letras_a(lista_letras), 0)
+
+if __name__ == "__main__":
+    unittest.main()
+
+'''import unittest
+
+def validar_entrada(entrada):
+    return entrada.isalpha()
+
+def contar_letras_a(lista_letras):
+    return lista_letras.count('A')
+
 def main():
     while True:
         entrada_usuario = input("Digite uma lista de letras (sem espaços ou números): ").strip().upper()
@@ -30,4 +50,4 @@ class TestContarLetrasA(unittest.TestCase):
         self.assertEqual(contar_letras_a(lista_letras), 0)
 
 unittest.main(exit=False)
-main()
+main()'''

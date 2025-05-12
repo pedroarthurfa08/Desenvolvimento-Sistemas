@@ -5,6 +5,25 @@ import unittest
 def inverter_lista(lista):
     return lista[::-1]
 
+class TestInverterLista(unittest.TestCase):
+    def test_inverter_lista(self):
+        lista = [1, 2, 3, 4, 5]
+        lista_invertida = inverter_lista(lista)
+        self.assertEqual(lista_invertida, [5, 4, 3, 2, 1])
+
+    def test_inverter_lista_vazia(self):
+        lista = []
+        lista_invertida = inverter_lista(lista)
+        self.assertEqual(lista_invertida, [])
+
+if __name__ == "__main__":
+    unittest.main()
+
+'''import unittest
+
+def inverter_lista(lista):
+    return lista[::-1]
+
 def main():
     lista_x = [1, 2, 3, 4, 5]
     lista_y = inverter_lista(lista_x)
@@ -23,4 +42,4 @@ class TestInverterLista(unittest.TestCase):
         self.assertEqual(lista_invertida, [])
 
 unittest.main(exit=False)
-main()
+main()'''
