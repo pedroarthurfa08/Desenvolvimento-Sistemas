@@ -1,4 +1,4 @@
-import Fastify, { FastifyInstance, FastifyRequest,FastifyReply } from 'fastify';
+import Fastify, { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 import { randomUUID } from 'crypto';
 
 interface Book {
@@ -44,38 +44,36 @@ server.get('/books', async (request: FastifyRequest, reply: FastifyReply) => {
 
 server.get<{ Params: BookParams }>(
     '/books/:bookId',
-    async (request: FastifyRequest<{ Params: BookParams }>, reply: FastifyReply) =>
-{
-    const bookId = request.params.bookId;
-    const book = books.find((b) => b.id === bookId);
-    if (!book) {
-    reply.code(404).send({ message: 'Book not found' });
-    return;
-    }
-    return book;
+    async (request: FastifyRequest<{ Params: BookParams }>, reply: FastifyReply) => {
+        const bookId = request.params.bookId;
+        const book = books.find((b) => b.id === bookId);
+        if (!book) {
+            reply.code(404).send({ message: 'Book not found' });
+            return;
+        }
+        return book;
     }
 );
 
 server.post<{ Body: CreateBookBody }>(
     '/books',
     async (request: FastifyRequest<{ Body: CreateBookBody }>, reply: FastifyReply) => {
-    const { title, description, category, pageCount } = request.body;
-    if (!title || !description || !category || !pageCount) {
-        reply.code(400).send({ message: 'Missing required fields: title, description, category, pageCount' });
-    return;
-    }
-    const newBook: Book = {
-        id: randomUUID(),
-        title,
-        description,
-        category,
-        pageCount,
-        createdAt: new Date(),
-    };
-    books.push(newBook);
-
-    reply.code(201);
-    return newBook;
+        const { title, description, category, pageCount } = request.body;
+        if (!title || !description || !category || !pageCount) {
+            reply.code(400).send({ message: 'Missing required fields: title, description, category, pageCount' });
+            return;
+        }
+        const newBook: Book = {
+            id: randomUUID(),
+            title,
+            description,
+            category,
+            pageCount,
+            createdAt: new Date(),
+        };
+        books.push(newBook);
+        reply.code(201);
+        return newBook;
     }
 );
 
@@ -87,14 +85,11 @@ server.put<{ Params: BookParams; Body: UpdateBookBody }>(
     ) => {
         const bookId = request.params.bookId;
         const { title, description, category, pageCount } = request.body;
-
         const bookIndex = books.findIndex((b) => b.id === bookId);
-
         if (bookIndex === -1) {
             reply.code(404).send({ message: 'Book not found' });
             return;
         }
-
         const updatedBook: Book = {
             ...books[bookIndex],
             title: title !== undefined ? title : books[bookIndex].title,
@@ -102,9 +97,7 @@ server.put<{ Params: BookParams; Body: UpdateBookBody }>(
             category: category !== undefined ? category : books[bookIndex].category,
             pageCount: pageCount !== undefined ? pageCount : books[bookIndex].pageCount,
         };
-
         books[bookIndex] = updatedBook;
-
         return updatedBook;
     }
 );
@@ -115,12 +108,10 @@ server.delete<{ Params: BookParams }>(
         const bookId = request.params.bookId;
         const initialLength = books.length;
         books = books.filter((book) => book.id !== bookId);
-
         if (books.length === initialLength) {
             reply.code(404).send({ message: 'Book not found' });
             return;
         }
-
         reply.code(204).send();
     }
 );
