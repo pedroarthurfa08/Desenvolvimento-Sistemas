@@ -23,6 +23,30 @@ class TestSomaIntervalo(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(exit=False)
+    
+import unittest
+
+def soma_intervalo(a, b):
+    soma = 0
+    for i in range(a, b + 1):
+        soma += i
+    return soma
+
+class TestSomaIntervalo(unittest.TestCase):
+    def test_soma_intervalo_positivos(self):
+        self.assertEqual(soma_intervalo(1, 5), 15)
+
+    def test_soma_intervalo_negativos(self):
+        self.assertEqual(soma_intervalo(-5, -1), -15)
+
+    def test_soma_intervalo_misto(self):
+        self.assertEqual(soma_intervalo(-2, 2), 0)
+
+    def test_soma_intervalo_igual(self):
+        self.assertEqual(soma_intervalo(5, 5), 5)
+
+if __name__ == '__main__':
+    unittest.main(exit=False)
 
     while True:
         try:
