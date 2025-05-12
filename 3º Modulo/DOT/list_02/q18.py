@@ -2,6 +2,25 @@
 
 import unittest
 
+def filtrar_negativos(lista):
+    return [num for num in lista if num < 0]
+
+class TestFiltrarNegativos(unittest.TestCase):
+    def test_filtrar_negativos(self):
+        lista = [1, -2, 3, -4, 5]
+        negativos = filtrar_negativos(lista)
+        self.assertEqual(negativos, [-2, -4])
+
+    def test_filtrar_negativos_sem_negativos(self):
+        lista = [1, 2, 3, 4, 5]
+        negativos = filtrar_negativos(lista)
+        self.assertEqual(negativos, [])
+
+if __name__ == "__main__":
+    unittest.main()
+
+'''import unittest
+
 def ler_lista(tamanho):
     lista = []
     print(f"Digite {tamanho} números inteiros (positivos ou negativos):")
@@ -41,4 +60,4 @@ class TestFiltrarNegativos(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(exit=False)
-    main()
+    main()'''
