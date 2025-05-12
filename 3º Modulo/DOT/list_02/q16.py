@@ -2,6 +2,20 @@
 
 import unittest
 
+def transformar_lista(lista_x):
+    return [x / 2 if i % 2 == 0 else x * 3 for i, x in enumerate(lista_x)]
+
+class TestTransformarLista(unittest.TestCase):
+    def test_transformar_lista(self):
+        lista_x = [2, 3, 4, 5]
+        lista_y = transformar_lista(lista_x)
+        self.assertEqual(lista_y, [1, 9, 2, 15])
+
+if __name__ == "__main__":
+    unittest.main()
+    
+'''import unittest
+
 def ler_lista(tamanho):
     lista = []
     print(f"Digite {tamanho} números inteiros e positivos: ")
@@ -39,4 +53,4 @@ class TestTransformarLista(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(exit=False)
-    main()
+    main()'''
