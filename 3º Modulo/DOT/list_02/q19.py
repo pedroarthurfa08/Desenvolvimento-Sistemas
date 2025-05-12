@@ -2,6 +2,21 @@
 
 import unittest
 
+def juntar_listas(lista_1, lista_2):
+    return lista_1 + lista_2
+
+class TestJuntarListas(unittest.TestCase):
+    def test_juntar_listas(self):
+        lista_1 = [1, 2, 3]
+        lista_2 = [4, 5, 6]
+        lista_juntada = juntar_listas(lista_1, lista_2)
+        self.assertEqual(lista_juntada, [1, 2, 3, 4, 5, 6])
+
+if __name__ == "__main__":
+    unittest.main()
+
+'''import unittest
+
 def ler_lista(nome, tamanho):
     lista = []
     print(f"Digite {tamanho} números inteiros para a lista {nome}:")
@@ -38,4 +53,4 @@ class TestJuntarListas(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(exit=False)
-    main()
+    main()'''
