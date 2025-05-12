@@ -6,6 +6,30 @@ def inverter_lista(lista):
     return lista[::-1]
 
 def ler_lista(tamanho):
+    # Esta função contém input(), que você pediu para remover.
+    # Para os testes, não precisamos dela.
+    return [0] * tamanho  # Retorna uma lista preenchida com zeros para evitar erros nos testes
+
+class TestInverterLista(unittest.TestCase):
+    def test_inverter_lista(self):
+        lista = [1, 2, 3, 4, 5]
+        lista_invertida = inverter_lista(lista)
+        self.assertEqual(lista_invertida, [5, 4, 3, 2, 1])
+
+    def test_inverter_lista_vazia(self):
+        lista = []
+        lista_invertida = inverter_lista(lista)
+        self.assertEqual(lista_invertida, [])
+
+if __name__ == "__main__":
+    unittest.main()
+    
+'''import unittest
+
+def inverter_lista(lista):
+    return lista[::-1]
+
+def ler_lista(tamanho):
     return [int(input(f'Elemento {i + 1}: ')) for i in range(tamanho)]
 
 def main():
@@ -28,4 +52,4 @@ class TestInverterLista(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(exit=False)
-    main()
+    main()'''
