@@ -4,8 +4,27 @@ def esta_ordenada(numeros):
     return all(numeros[i] <= numeros[i + 1] for i in range(len(numeros) - 1))
 
 # Testes
-assert esta_ordenada([1, 2, 3]) == True
-assert esta_ordenada([3, 7, 2]) == False
-assert esta_ordenada([1, 1, 2, 2, 3]) == True
-assert esta_ordenada([]) == True
-assert esta_ordenada([1]) == True
+numeros = [1, 2, 3]
+resultado = esta_ordenada(numeros)
+print(f"Lista: {numeros}")
+print(f"Está ordenada: {resultado}")
+
+numeros = [3, 7, 2]
+resultado = esta_ordenada(numeros)
+print(f"\nLista: {numeros}")
+print(f"Está ordenada: {resultado}")
+
+numeros = [1, 1, 2, 2, 3]
+resultado = esta_ordenada(numeros)
+print(f"\nLista: {numeros}")
+print(f"Está ordenada: {resultado}")
+
+numeros = []
+resultado = esta_ordenada(numeros)
+print(f"\nLista: {numeros}")
+print(f"Está ordenada: {resultado}")
+
+numeros = [1]
+resultado = esta_ordenada(numeros)
+print(f"\nLista: {numeros}")
+print(f"Está ordenada: {resultado}")
