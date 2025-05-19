@@ -7,7 +7,6 @@ def maior_soma_seguimento(numeros):
         max_global = max(max_global, max_atual)
     return max_global
 
-# Testes
 numeros = [5, -2, -2, -7, 3, 15, 10, -3, 9, -6, 4, 1]
 resultado = maior_soma_seguimento(numeros)
 print(f"Maior soma do seguimento: {resultado}")
