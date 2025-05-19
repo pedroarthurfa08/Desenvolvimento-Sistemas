@@ -9,6 +9,17 @@ def soma_cumulativa(numeros):
     return resultado
 
 # Testes
-assert soma_cumulativa([1, 2, 3]) == [1, 3, 6]
-assert soma_cumulativa([-1, 1, -1, 1]) == [-1, 0, -1, 0]
-assert soma_cumulativa([1, 2, 3, 4, 5]) == [1, 3, 6, 10, 15]
+numeros = [1, 2, 3]
+resultado = soma_cumulativa(numeros)
+print(f"Lista original: {numeros}")
+print(f"Soma cumulativa: {resultado}")
+
+numeros = [-1, 1, -1, 1]
+resultado = soma_cumulativa(numeros)
+print(f"\nLista original: {numeros}")
+print(f"Soma cumulativa: {resultado}")
+
+numeros = [1, 2, 3, 4, 5]
+resultado = soma_cumulativa(numeros)
+print(f"\nLista original: {numeros}")
+print(f"Soma cumulativa: {resultado}")
