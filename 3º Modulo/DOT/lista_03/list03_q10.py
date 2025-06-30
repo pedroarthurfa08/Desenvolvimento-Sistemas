@@ -2,13 +2,22 @@
 
 
 def maior_soma_repetidos(numeros):
+    # Primeiro, conta quantas vezes cada número aparece
     contagem = {}
     for num in numeros:
-        if num in contagem:
-            contagem[num] += num
-        else:
-            contagem[num] = num
-    return max(contagem.values())
+        contagem[num] = contagem.get(num, 0) + 1
+    
+    # Calcula a soma apenas para números que aparecem mais de uma vez
+    somas = {}
+    for num, quantidade in contagem.items():
+        if quantidade > 1:  # Só considera números que se repetem
+            somas[num] = num * quantidade
+    
+    # Se não houver números repetidos, retorna 0
+    if not somas:
+        return 0
+        
+    return max(somas.values())
 
 # Testes
 numeros = [5, -2, -2, 5, 3, 5, 10, -2, 3, 10, 3, 1]
