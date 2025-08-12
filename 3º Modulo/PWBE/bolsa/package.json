@@ -1,0 +1,32 @@
+{
+  "name": "pwbe",
+  "version": "1.0.0",
+  "description": "pwbe",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibrunoleal/pwbe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibrunoleal/pwbe/issues"
+  },
+  "homepage": "https://github.com/ibrunoleal/pwbe#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.1",
+    "nodemon": "^3.1.10",
+    "pg": "^8.16.0",
+    "validator": "^13.15.0"
+  }
+}

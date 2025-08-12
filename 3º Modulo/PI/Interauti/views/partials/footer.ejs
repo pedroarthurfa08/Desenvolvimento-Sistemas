@@ -1,0 +1,102 @@
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Inicializar tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-tooltip]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl, {
+                trigger: 'hover'
+            })
+        });
+
+        // Auto-fechar alertas após 5 segundos
+        window.setTimeout(function() {
+            var alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                var bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+
+        // Confirmar exclusão
+        function confirmDelete(taskId) {
+            if (confirm('Tem certeza que deseja excluir esta tarefa?')) {
+                document.getElementById('delete-form-' + taskId).submit();
+            }
+        }
+
+        // Alternar status da tarefa
+        function toggleComplete(taskId) {
+            document.getElementById('complete-form-' + taskId).submit();
+        }
+
+        // Alternar descrição
+        function toggleDescription(taskId) {
+            var description = document.getElementById('description-' + taskId);
+            var button = description.previousElementSibling;
+            
+            if (description.style.display === 'none') {
+                description.style.display = 'block';
+                button.innerHTML = '<i class="fas fa-chevron-up"></i> Ocultar';
+            } else {
+                description.style.display = 'none';
+                button.innerHTML = '<i class="fas fa-chevron-down"></i> Mostrar';
+            }
+        }
+    </script>
+    <footer class="footer mt-5 py-4 bg-light border-top shadow-sm">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="mb-2 mb-md-0 text-center text-md-start">
+                <span class="fw-bold">Interauti</span> &copy; <%= new Date().getFullYear() %> — Todos os direitos reservados.<br>
+            </div>
+            <div class="mb-2 mb-md-0">
+                <a href="/sobre" class="text-decoration-none me-3">Sobre</a>
+                <a href="/contato" class="text-decoration-none me-3">Contato</a>
+                <a href="/tasks" class="text-decoration-none me-3">Tarefas</a>
+                <a href="/agenda" class="text-decoration-none">Agenda</a>
+            </div>
+            <div>
+                <a href="https://instagram.com/inte.rauti" target="_blank" class="text-dark me-2" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="mailto:interauti366@gmail.com" class="text-dark" aria-label="Email"><i class="fas fa-envelope fa-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+    <style>
+        .footer {
+            background: #f8f9fa;
+            font-size: 1rem;
+            border-radius: 0 0 12px 12px;
+        }
+        .footer a {
+            color: #0d6efd;
+            transition: color 0.2s;
+        }
+        .footer a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        .footer i.fa-heart {
+            animation: pulse 1.2s infinite alternate;
+        }
+        @keyframes pulse {
+            to { transform: scale(1.2); }
+        }
+        /* Adaptação para modo escuro */
+        html[data-theme='dark'] .footer {
+            background: #212529 !important;
+            color: #f8f9fa;
+        }
+        html[data-theme='dark'] .footer a {
+            color: #f8f9fa;
+        }
+        html[data-theme='dark'] .footer a:hover {
+            color: #0d6efd;
+        }
+        html[data-theme='dark'] .footer .border-top {
+            border-top: 1px solid #343a40 !important;
+        }
+    </style>
+</body>
+</html> 

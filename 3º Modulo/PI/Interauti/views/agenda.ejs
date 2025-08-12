@@ -1,0 +1,106 @@
+<%- include('partials/header') %>
+
+<!-- FullCalendar CSS -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css' rel='stylesheet' />
+
+<div class="container mt-5 page-transition">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-11 col-md-10">
+            <div class="card shadow-sm agenda-card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0"><i class="fas fa-calendar-alt me-2"></i>Agenda</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Bem-vindo à sua agenda! Visualize seus compromissos no calendário abaixo.</p>
+
+                    <!-- Calendário -->
+                    <div id='calendar'></div>
+
+                    <!-- Modal de Detalhes da Tarefa -->
+                    <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="taskModalLabel">Detalhes da Tarefa</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                          </div>
+                          <div class="modal-body">
+                            <h6 id="modalTaskTitle" class="fw-bold mb-2"></h6>
+                            <div id="modalTaskDescription" class="mb-2 text-muted small"></div>
+                            <div id="modalTaskDate" class="mb-1"></div>
+                            <div id="modalTaskPriority" class="mb-1"></div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="alert alert-info mt-4 agenda-alert">
+                        <i class="fas fa-info-circle"></i> Clique em uma data para visualizar ou adicionar compromissos (em breve).
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FullCalendar JS -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+
+<script>
+  var tasks = <%- JSON.stringify(typeof tasks !== 'undefined' ? tasks : []) %>;
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function showAgenda() {
+      const calendarEl = document.getElementById('calendar');
+      const events = tasks
+        .filter(task => task.date)
+        .map(task => {
+          let dateStr = task.date ? task.date.replace(/Z$/, '') : '';
+          let start = dateStr;
+          if (task.time) {
+            start = dateStr.split('T')[0] + 'T' + task.time;
+          }
+          return {
+            title: task.title,
+            start: start,
+            description: task.description || '',
+            id: task.id,
+            extendedProps: { priority: task.priority || '' }
+          };
+        });
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: window.innerWidth < 600 ? 'listWeek' : 'dayGridMonth',
+        locale: 'pt-br',
+        height: window.innerWidth < 600 ? 'auto' : 600,
+        events: events,
+        eventDidMount: function(info) {
+          if (info.event.extendedProps.priority) {
+            info.el.setAttribute('data-priority', info.event.extendedProps.priority.toLowerCase());
+          }
+        },
+        eventClick: function(info) {
+          document.getElementById('modalTaskTitle').textContent = info.event.title;
+          document.getElementById('modalTaskDescription').textContent = info.event.extendedProps.description || 'Sem descrição.';
+          document.getElementById('modalTaskDate').innerHTML = '<i class="fas fa-calendar-alt me-1"></i> ' + (info.event.start ? info.event.start.toLocaleString('pt-BR') : '');
+          var priority = info.event.extendedProps.priority || '';
+          var badge = '';
+          if(priority) {
+            var color = priority === 'alta' ? 'danger' : (priority === 'média' ? 'warning' : (priority === 'baixa' ? 'info' : 'secondary'));
+            badge = '<span class="badge bg-' + color + '">' + priority.charAt(0).toUpperCase() + priority.slice(1) + '</span>';
+          }
+          document.getElementById('modalTaskPriority').innerHTML = badge;
+          var modal = new bootstrap.Modal(document.getElementById('taskModal'));
+          modal.show();
+        }
+      });
+      calendar.render();
+    }
+    setTimeout(showAgenda, 2000);
+  });
+</script>
+
+<%- include('partials/footer') %>

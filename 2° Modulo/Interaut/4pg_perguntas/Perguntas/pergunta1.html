@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interaut - Pergunta de Interação">
+    <link rel="shortcut icon" href="../../1pg_principal/Imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Interaut - Pergunta 1</title>
+</head>
+<body>
+    <main class="container" role="main">
+        <header>
+            <nav class="navigation" role="navigation">
+                <button id="voltar" 
+                        class="nav-button" 
+                        onclick="window.location.href='../../3pg_fases/index.html'"
+                        aria-label="Voltar para seleção de fases">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                    <span class="sr-only">Voltar</span>
+                </button>
+                <h1 class="name" id="t1">PONTUAÇÃO: <span id="pontuacao">0</span></h1>
+                <div class="config-buttons">
+                    <button id="toggleAudio" 
+                            class="config-btn"
+                            aria-label="Ativar/Desativar áudio">
+                        <i class="fas fa-volume-up" aria-hidden="true"></i>
+                    </button>
+                    <button id="toggleContraste" 
+                            class="config-btn"
+                            aria-label="Alternar alto contraste">
+                        <i class="fas fa-adjust" aria-hidden="true"></i>
+                    </button>
+                    <button id="aumentarFonte" 
+                            class="config-btn"
+                            aria-label="Aumentar tamanho da fonte">
+                        <i class="fas fa-text-height" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <section class="questao-area" role="group" aria-labelledby="questao-titulo">
+            <h2 id="questao-titulo" class="questao">Como você deve reagir quando uma pessoa faz algo que você não gosta?</h2>
+            <button id="baud" onclick="reproduzirAudio()" aria-label="Reproduzir áudio da pergunta">
+                <i class="fa fa-audio-description" aria-hidden="true"></i>
+                <span class="sr-only">Descrição em áudio</span>
+            </button>
+            <audio id="audio" src="../../4pg_perguntas/Audio_descripiton/1.mp3"></audio>
+        </section>
+        
+        <div class="imagem-questao" role="img" aria-label="Imagem ilustrativa da pergunta">
+            <img src="https://static.vecteezy.com/ti/fotos-gratis/t1/20556111-feliz-e-alegre-crianca-quer-para-abraco-alguem-amarelo-fundo-cor-foto.jpg" alt="Criança feliz querendo abraçar alguém em um fundo amarelo.">
+        </div>
+        
+        <div class="response" role="group" aria-labelledby="opcoes-titulo">
+            <h2 id="opcoes-titulo" class="sr-only">Opções de resposta</h2>
+            <div id="opcao" class="grid-respostas">
+                <button class="resposta" onclick="verificarResposta(this)" data-correta="false" aria-label="Opção 1: Guardar ressentimento">1.Guardar ressentimento</button>
+                <button class="resposta" onclick="verificarResposta(this)" data-correta="false" aria-label="Opção 2: Não perdoo a pessoa">2.Não perdoo a pessoa</button>
+                <button class="resposta" onclick="verificarResposta(this)" data-correta="true" aria-label="Opção 3: Perdoar e ser amigo">3.Perdoar e ser amigo</button>
+                <button class="resposta" onclick="verificarResposta(this)" data-correta="false" aria-label="Opção 4: Deixar pra lá">4.Deixar pra lá</button>
+            </div>
+        </div>
+
+        <div class="overlay" id="overlay" role="presentation"></div>
+
+        <div class="popup" id="popup" role="dialog" aria-modal="true" aria-labelledby="popup-mensagem">
+            <h2 id="popup-mensagem"></h2>
+            <div id="pontuacao-final-popup" class="pontuacao-info">Pontuação: <span id="score"></span></div>
+            <button id="proximoBotao" onclick="proximaFase()" aria-label="Próxima fase">&#9654;<span class="sr-only">Próxima</span></button>
+            <button id="tentarNovamenteBotao" onclick="tentarNovamente()" aria-label="Tentar novamente">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+                <span class="sr-only">Tentar novamente</span>
+            </button>
+        </div>
+    </main>
+
+    <div id="ajudaModal" class="modal" role="dialog" aria-labelledby="ajudaTitulo">
+        <div class="modal-content">
+            <h2 id="ajudaTitulo">Precisa de ajuda?</h2>
+            <p>Como responder às perguntas:</p>
+            <ul>
+                <li>Leia ou ouça a pergunta cuidadosamente</li>
+                <li>Clique em uma das opções de resposta</li>
+                <li>Use os botões de navegação para avançar ou tentar novamente</li>
+            </ul>
+            <p>Atalhos de teclado:</p>
+            <ul>
+                <li>Alt + A: Ativar/Desativar áudio</li>
+                <li>Alt + C: Alternar alto contraste</li>
+                <li>Alt + F: Aumentar/Diminuir fonte</li>
+                <li>Alt + H: Abrir/Fechar ajuda</li>
+                <li>Esc: Voltar</li>
+            </ul>
+            <button id="fecharAjuda" aria-label="Fechar ajuda">Fechar</button>
+        </div>
+    </div>
+</body>
+</html>

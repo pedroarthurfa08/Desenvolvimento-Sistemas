@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interaut - Seleção de Habilidades e Personagens">
+    <link rel="shortcut icon" href="../1pg_principal/Imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Interaut - Seleção de Habilidades</title>
+</head>
+<body>
+    <main class="container" role="main">
+        <video autoplay loop muted class="video" aria-hidden="true">
+            <source src="Imagens/lv_0_20250129200226.mp4" type="video/mp4">
+            <track kind="captions" src="captions.vtt" label="Português">
+        </video>
+
+        <header>
+            <nav class="navigation" role="navigation">
+                <button id="voltar" 
+                        class="nav-button" 
+                        onclick="window.location.href='../1pg_principal/index.html'"
+                        aria-label="Voltar para página inicial">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                    <span class="sr-only">Voltar</span>
+                </button>
+                <h1 class="name" id="t1">HABILIDADES</h1>
+                <div class="config-buttons">
+                    <button id="toggleAudio" 
+                            class="config-btn"
+                            aria-label="Ativar/Desativar áudio">
+                        <i class="fas fa-volume-up" aria-hidden="true"></i>
+                    </button>
+                    <button id="toggleContraste" 
+                            class="config-btn"
+                            aria-label="Alternar alto contraste">
+                        <i class="fas fa-adjust" aria-hidden="true"></i>
+                    </button>
+                    <button id="aumentarFonte" 
+                            class="config-btn"
+                            aria-label="Aumentar tamanho da fonte">
+                        <i class="fas fa-text-height" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <section class="characters" role="region" aria-label="Seleção de habilidades">
+            <div class="character-card" 
+                 data-id="1" 
+                 tabindex="0" 
+                 role="button"
+                 aria-label="Habilidade de Interação">
+                <img src="Imagens/ge14fev22-mediacaocriancas-dudaoliva-c1-texto.jpg" 
+                     alt="Ilustração representando interação social"
+                     class="character-image">
+                <div class="text">
+                    <h2><u>INTERAÇÃO</u></h2>
+                    <p class="description">
+                        Aprimore suas habilidades de interação e comunicação com este modo de fases 
+                        voltado a essa habilidade.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Espaço para adicionar mais cards de habilidades no futuro -->
+        </section>
+
+        <div id="confirmation" 
+             class="hidden" 
+             role="dialog" 
+             aria-labelledby="confirm-title">
+            <h2 id="confirm-title" class="sr-only">Confirmar seleção</h2>
+            <button id="confirm-button" 
+                    class="action-button"
+                    aria-label="Confirmar seleção">
+                Confirmar
+            </button>
+        </div>
+
+        <div id="confirmation-message" 
+             class="hidden" 
+             role="alert" 
+             aria-live="polite">
+            <strong><span id="selected-character-name"></span></strong>
+            <strong><p>Preparado?! Vamos começar...</p></strong>
+        </div>
+    </main>
+
+    <div id="ajudaModal" class="modal" role="dialog" aria-labelledby="ajudaTitulo">
+        <div class="modal-content">
+            <h2 id="ajudaTitulo">Precisa de ajuda?</h2>
+            <p>Como selecionar uma habilidade:</p>
+            <ul>
+                <li>Clique em um card de habilidade para selecioná-lo</li>
+                <li>Use as teclas de seta para navegar entre as opções</li>
+                <li>Pressione Enter para confirmar sua seleção</li>
+                <li>Use os botões de configuração para ajustar sua experiência</li>
+            </ul>
+            <p>Atalhos de teclado:</p>
+            <ul>
+                <li>Alt + A: Ativar/Desativar áudio</li>
+                <li>Alt + C: Alternar alto contraste</li>
+                <li>Alt + F: Aumentar/Diminuir fonte</li>
+                <li>Alt + H: Abrir/Fechar ajuda</li>
+                <li>Esc: Voltar</li>
+            </ul>
+            <button id="fecharAjuda" aria-label="Fechar ajuda">Fechar</button>
+        </div>
+    </div>
+</body>
+</html>

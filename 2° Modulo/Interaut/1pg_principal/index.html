@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interaut - Uma experiência interativa e educativa para todos">
+    <link rel="shortcut icon" href="Imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>INTERAUT - Experiência Interativa</title>
+</head>
+
+<body>
+    <main>
+        <!-- Título, botão e input nome -->
+        <div class="divisao" role="region" aria-label="Área principal">
+            <video autoplay loop muted class="video" aria-hidden="true">
+                <source src="Imagens/lv_0_20250129143621.mp4" type="video/mp4">
+                <track kind="captions" src="captions.vtt" label="Português">
+            </video>
+            
+            <div class="sup" id="sup">
+                <button id="bsup1" 
+                        onclick="window.location.href='https://github.com/FILIPE314/INTERAUT'"
+                        aria-label="Acesse nosso GitHub">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <span class="sr-only">GitHub</span>
+                </button>
+                
+                <h1 class="name" id="t1">INTERAUT</h1>
+                
+                <button id="bsup2" 
+                        onclick="window.location.href='https://www.instagram.com/inte.raut/'"
+                        aria-label="Acesse nosso Instagram">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    <span class="sr-only">Instagram</span>
+                </button>
+            </div>
+
+            <div class="mensagem-container" role="status" aria-live="polite">
+                <strong><p id="mensagem"></p></strong>
+            </div>
+
+            <div class="controles">
+                <label for="ct1" class="sr-only">Digite seu nome</label>
+                <input class="ct1" 
+                       type="text" 
+                       id="ct1" 
+                       placeholder="Digite seu nome"
+                       aria-label="Digite seu nome"
+                       required>
+                
+                <div class="botoes">
+                    <button id="b2" 
+                            class="b2" 
+                            onclick="perguntaNome()"
+                            aria-label="Enviar nome">
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                        <span class="sr-only">Enviar</span>
+                    </button>
+                    
+                    <button id="b1" 
+                            class="b1"
+                            aria-label="Iniciar experiência">
+                        <span aria-hidden="true">&#9654;</span>
+                        <span class="sr-only">Iniciar</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="configuracoes">
+                <button id="toggleAudio" 
+                        class="config-btn"
+                        aria-label="Ativar/Desativar áudio">
+                    <i class="fas fa-volume-up" aria-hidden="true"></i>
+                </button>
+                
+                <button id="toggleContraste" 
+                        class="config-btn"
+                        aria-label="Alternar alto contraste">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </button>
+                
+                <button id="aumentarFonte" 
+                        class="config-btn"
+                        aria-label="Aumentar tamanho da fonte">
+                    <i class="fas fa-text-height" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="ajudaModal" class="modal" role="dialog" aria-labelledby="ajudaTitulo">
+        <div class="modal-content">
+            <h2 id="ajudaTitulo">Precisa de ajuda?</h2>
+            <p>Aqui estão algumas dicas para usar o Interaut:</p>
+            <ul>
+                <li>Digite seu nome no campo de texto</li>
+                <li>Use o botão de enviar (avião) para confirmar seu nome</li>
+                <li>Clique no botão play para começar</li>
+                <li>Use os botões de configuração para ajustar sua experiência</li>
+            </ul>
+            <button id="fecharAjuda" aria-label="Fechar ajuda">Fechar</button>
+        </div>
+    </div>
+</body>
+
+</html>

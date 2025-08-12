@@ -1,0 +1,316 @@
+/* Variáveis CSS para personalização fácil */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --accent-color: #17a2b8;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+    --card-background: rgba(255, 255, 255, 0.9);
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+    --font-size-base: 16px;
+    --border-radius: 10px;
+}
+
+/* Reset e estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Jersey 10', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    min-height: 100vh;
+}
+
+/* Acessibilidade */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Layout principal */
+.container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Vídeo de fundo */
+.video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.7);
+}
+
+/* Navegação */
+.navigation {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: color var(--transition-speed);
+    padding: 0.5rem;
+}
+
+.nav-button:hover {
+    color: var(--primary-color);
+}
+
+/* Título */
+.name {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Botões de configuração */
+.config-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.config-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: color var(--transition-speed);
+    padding: 0.5rem;
+}
+
+.config-btn:hover {
+    color: var(--primary-color);
+}
+
+/* Cards de personagens */
+.characters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem;
+}
+
+.character-card {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform var(--transition-speed);
+    cursor: pointer;
+}
+
+.character-card:hover,
+.character-card:focus {
+    transform: translateY(-5px);
+}
+
+.character-card.selected {
+    border: 3px solid var(--primary-color);
+}
+
+.character-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.text {
+    padding: 1.5rem;
+}
+
+.text h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.description {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Confirmação */
+#confirmation {
+    margin-top: 2rem;
+}
+
+.action-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.action-button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Modal de ajuda */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    max-width: 500px;
+    margin: 2rem auto;
+    box-shadow: var(--card-shadow);
+}
+
+.modal h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.modal ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.modal li {
+    margin-bottom: 0.5rem;
+}
+
+#fecharAjuda {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color var(--transition-speed);
+}
+
+#fecharAjuda:hover {
+    background-color: var(--accent-color);
+}
+
+/* Estados */
+.hidden {
+    display: none;
+}
+
+/* Alto contraste */
+body.high-contrast {
+    --text-color: #ffffff;
+    --background-color: #000000;
+    --card-background: rgba(0, 0, 0, 0.9);
+    --primary-color: #ffffff;
+    --secondary-color: #ffffff;
+}
+
+/* Fonte aumentada */
+body.large-text {
+    --font-size-base: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .name {
+        font-size: 2rem;
+    }
+
+    .characters {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        margin: 1rem;
+        padding: 1rem;
+    }
+}
+
+/* Foco visível */
+*:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn var(--transition-speed) ease-in;
+}
+
+/* Estados de carregamento */
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

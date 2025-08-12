@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interaut - Seleção de Fases">
+    <link rel="shortcut icon" href="../1pg_principal/Imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Interaut - Seleção de Fases</title>
+</head>
+<body>
+    <main class="container" role="main">
+        <header>
+            <nav class="navigation" role="navigation">
+                <button id="voltar" 
+                        class="nav-button" 
+                        onclick="window.location.href='../2pg_personagens/index.html'"
+                        aria-label="Voltar para seleção de habilidades">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                    <span class="sr-only">Voltar</span>
+                </button>
+                <h1 class="name">Fases</h1>
+                <div class="config-buttons">
+                    <button id="toggleAudio" 
+                            class="config-btn"
+                            aria-label="Ativar/Desativar áudio">
+                        <i class="fas fa-volume-up" aria-hidden="true"></i>
+                    </button>
+                    <button id="toggleContraste" 
+                            class="config-btn"
+                            aria-label="Alternar alto contraste">
+                        <i class="fas fa-adjust" aria-hidden="true"></i>
+                    </button>
+                    <button id="aumentarFonte" 
+                            class="config-btn"
+                            aria-label="Aumentar tamanho da fonte">
+                        <i class="fas fa-text-height" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <section class="d_level" role="grid" aria-label="Seleção de níveis">
+            <div data-id="1" class="level" tabindex="0" role="gridcell" aria-label="Fase 1">1</div>
+            <div data-id="2" class="level" tabindex="0" role="gridcell" aria-label="Fase 2">2</div>
+            <div data-id="3" class="level" tabindex="0" role="gridcell" aria-label="Fase 3">3</div>
+            <div data-id="4" class="level" tabindex="0" role="gridcell" aria-label="Fase 4">4</div>
+            <div data-id="5" class="level" tabindex="0" role="gridcell" aria-label="Fase 5">5</div>
+            <div data-id="6" class="level" tabindex="0" role="gridcell" aria-label="Fase 6">6</div>
+            <div data-id="7" class="level" tabindex="0" role="gridcell" aria-label="Fase 7">7</div>
+            <div data-id="8" class="level" tabindex="0" role="gridcell" aria-label="Fase 8">8</div>
+            <div data-id="9" class="level" tabindex="0" role="gridcell" aria-label="Fase 9">9</div>
+            <div data-id="10" class="level" tabindex="0" role="gridcell" aria-label="Fase 10">10</div>
+            <div data-id="11" class="level" tabindex="0" role="gridcell" aria-label="Fase 11">11</div>
+            <div data-id="12" class="level" tabindex="0" role="gridcell" aria-label="Fase 12">12</div>
+        </section>
+
+        <button id="b1" 
+                class="action-button"
+                aria-label="Selecionar fase">
+            Selecionar
+        </button>
+    </main>
+
+    <div id="ajudaModal" class="modal" role="dialog" aria-labelledby="ajudaTitulo">
+        <div class="modal-content">
+            <h2 id="ajudaTitulo">Precisa de ajuda?</h2>
+            <p>Como selecionar uma fase:</p>
+            <ul>
+                <li>Clique em um número de fase para selecioná-lo</li>
+                <li>Use as teclas de seta para navegar entre as fases</li>
+                <li>Pressione Enter para confirmar sua seleção</li>
+                <li>Use os botões de configuração para ajustar sua experiência</li>
+            </ul>
+            <p>Atalhos de teclado:</p>
+            <ul>
+                <li>Alt + A: Ativar/Desativar áudio</li>
+                <li>Alt + C: Alternar alto contraste</li>
+                <li>Alt + F: Aumentar/Diminuir fonte</li>
+                <li>Alt + H: Abrir/Fechar ajuda</li>
+                <li>Esc: Voltar</li>
+            </ul>
+            <button id="fecharAjuda" aria-label="Fechar ajuda">Fechar</button>
+        </div>
+    </div>
+</body>
+</html>

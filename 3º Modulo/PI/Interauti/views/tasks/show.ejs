@@ -1,0 +1,142 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-4 page-transition">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <!-- Cabeçalho da Tarefa -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Detalhes da Tarefa</h4>
+                    <div>
+                        <a href="/tasks" class="btn btn-light btn-sm me-2" data-tooltip="Voltar para lista">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </a>
+                        <a href="/tasks/<%= task._id %>/edit" class="btn btn-warning btn-sm me-2" data-tooltip="Editar tarefa">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <form action="/tasks/<%= task.id %>/delete" method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm" data-tooltip="Excluir tarefa" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')">
+                                <i class="fas fa-trash"></i> Excluir
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Título e Datas -->
+                    <div class="mb-4">
+                        <h2 class="card-title"><%= task.title %></h2>
+                        <div class="text-muted">
+                            <small>
+                                <i class="fas fa-clock"></i> Criada em: <%= new Date(task.createdAt).toLocaleDateString('pt-BR') %>
+                                <% if (task.updatedAt > task.createdAt) { %>
+                                    | Atualizada em: <%= new Date(task.updatedAt).toLocaleDateString('pt-BR') %>
+                                <% } %>
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Status e Progresso -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">Status</h5>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-<%= task.status === 'concluída' ? 'success' : task.status === 'em_andamento' ? 'warning' : 'secondary' %> status-badge me-2">
+                                            <%= task.status.charAt(0).toUpperCase() + task.status.slice(1) %>
+                                        </span>
+                                        <form action="/tasks/<%= task._id %>" method="POST" class="d-inline">
+                                            <input type="hidden" name="_method" value="PUT">
+                                            <input type="hidden" name="status" value="<%= task.status === 'concluída' ? 'pendente' : 'concluída' %>">
+                                            <button type="submit" class="btn btn-sm <%= task.status === 'concluída' ? 'btn-warning' : 'btn-success' %>" data-tooltip="<%= task.status === 'concluída' ? 'Marcar como Pendente' : 'Marcar como Concluída' %>">
+                                                <i class="fas <%= task.status === 'concluída' ? 'fa-undo' : 'fa-check' %>"></i>
+                                                <%= task.status === 'concluída' ? 'Marcar como Pendente' : 'Marcar como Concluída' %>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">Prioridade</h5>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-<%= task.priority === 'alta' ? 'danger' : task.priority === 'média' ? 'warning' : 'info' %> me-2">
+                                            <%= task.priority.charAt(0).toUpperCase() + task.priority.slice(1) %>
+                                        </span>
+                                        <div class="progress flex-grow-1" style="height: 8px;">
+                                            <div class="progress-bar bg-<%= task.priority === 'alta' ? 'danger' : task.priority === 'média' ? 'warning' : 'info' %>" 
+                                                 role="progressbar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Descrição -->
+                    <% if (task.description) { %>
+                        <div class="card bg-light mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Descrição</h5>
+                                <p class="card-text"><%= task.description %></p>
+                            </div>
+                        </div>
+                    <% } %>
+
+                    <!-- Detalhes Adicionais -->
+                    <div class="row">
+                        <% if (task.date) { %>
+                            <div class="col-md-6 mb-3">
+                                <div class="card bg-light h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Data de Vencimento</h5>
+                                        <p class="card-text">
+                                            <i class="fas fa-calendar"></i>
+                                            <%= new Date(task.date).toLocaleDateString('pt-BR') %>
+                                            <% if (new Date(task.date) < new Date() && task.status !== 'concluída') { %>
+                                                <span class="badge bg-danger ms-2">Atrasada</span>
+                                            <% } %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+
+                        <% if (task.time) { %>
+                            <div class="col-md-6 mb-3">
+                                <div class="card bg-light h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Horário</h5>
+                                        <p class="card-text">
+                                            <i class="fas fa-clock"></i>
+                                            <%= task.time %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+
+                        <% if (task.duration) { %>
+                            <div class="col-md-6 mb-3">
+                                <div class="card bg-light h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Duração</h5>
+                                        <p class="card-text">
+                                            <i class="fas fa-hourglass-half"></i>
+                                            <%= task.duration %> minutos
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %> 

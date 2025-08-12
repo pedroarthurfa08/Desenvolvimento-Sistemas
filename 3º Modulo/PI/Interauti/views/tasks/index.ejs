@@ -1,0 +1,215 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5 page-transition">
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-8 mb-2 mb-md-0">
+            <h1 class="display-4 mb-1">Minhas Tarefas</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <!-- Removido botão de nova tarefa -->
+        </div>
+    </div>
+
+    <!-- Filtros Destacados -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body pb-2">
+            <form id="filterForm" action="/tasks" method="GET" class="row g-3 align-items-end">
+                <div class="col-md-3 col-6">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select input" id="status" name="status">
+                        <option value="">Todos</option>
+                        <option value="pendente" <%= filters.status === 'pendente' ? 'selected' : '' %>>Pendente</option>
+                        <option value="em_andamento" <%= filters.status === 'em_andamento' ? 'selected' : '' %>>Em Andamento</option>
+                        <option value="concluída" <%= filters.status === 'concluída' ? 'selected' : '' %>>Concluída</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-6">
+                    <label for="priority" class="form-label">Prioridade</label>
+                    <select class="form-select input" id="priority" name="priority">
+                        <option value="">Todas</option>
+                        <option value="baixa" <%= filters.priority === 'baixa' ? 'selected' : '' %>>Baixa</option>
+                        <option value="média" <%= filters.priority === 'média' ? 'selected' : '' %>>Média</option>
+                        <option value="alta" <%= filters.priority === 'alta' ? 'selected' : '' %>>Alta</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-6">
+                    <label for="date" class="form-label">Data</label>
+                    <input type="date" class="form-control input" id="date" name="date" value="<%= filters.date || '' %>">
+                </div>
+                <div class="col-md-3 col-6">
+                    <label for="search" class="form-label">Buscar</label>
+                    <input type="text" class="form-control input" id="search" name="search" placeholder="Buscar tarefas..." value="<%= filters.search || '' %>">
+                </div>
+                <div class="col-12 col-md-auto mt-3 mt-md-0 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary w-100 mt-5">
+                        <i class="fas fa-filter"></i> Filtrar
+                    </button>
+                    <a href="/tasks" class="btn btn-outline-secondary w-100 mt-5" id="clearFilters">
+                        <i class="fas fa-eraser"></i> Limpar Filtros
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lista de Tarefas em Grid -->
+    <div class="row g-4 mb-5">
+        <% if (tasks.length === 0) { %>
+            <div class="col-12">
+                <div class="alert alert-info text-center my-5 py-4" role="alert">
+                    <i class="fas fa-info-circle"></i> Nenhuma tarefa encontrada.
+                </div>
+            </div>
+        <% } else { %>
+            <% tasks.forEach(task => { %>
+                <div class="col-12 col-md-6 col-lg-4 d-flex">
+                    <%- include('_task_card', { task: task }) %>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+</div>
+
+<!-- Removido modal de nova tarefa -->
+
+<%- include('../partials/footer') %>
+
+<!-- Botão flutuante para adicionar tarefa -->
+<a href="/tasks/create" class="btn btn-primary btn-lg rounded-circle shadow position-fixed" id="addTaskBtn" style="bottom: 32px; right: 32px; z-index: 1050; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+    <i class="fas fa-plus"></i>
+    <span class="visually-hidden">Adicionar Tarefa</span>
+</a>
+
+<!-- Modal de Edição Rápida de Tarefa -->
+<div id="editTaskModal" class="modal" style="display:none; position:fixed; z-index:2000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.4); align-items:center; justify-content:center;">
+  <div class="modal-content" style="background:#fff; padding:2rem; border-radius:12px; max-width:400px; width:90%; position:relative;">
+    <span class="close" id="closeEditModal" style="position:absolute; top:10px; right:18px; font-size:2rem; cursor:pointer;">&times;</span>
+    <form id="editTaskForm">
+      <input type="hidden" name="id" id="editTaskId">
+      <div class="mb-3">
+        <label for="editTitle" class="form-label">Título:</label>
+        <input type="text" name="title" id="editTitle" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="editDescription" class="form-label">Descrição:</label>
+        <textarea name="description" id="editDescription" class="form-control"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="editPriority" class="form-label">Prioridade:</label>
+        <select name="priority" id="editPriority" class="form-select">
+          <option value="baixa">Baixa</option>
+          <option value="média">Média</option>
+          <option value="alta">Alta</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="editDate" class="form-label">Data:</label>
+        <input type="date" name="date" id="editDate" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Salvar</button>
+    </form>
+  </div>
+</div>
+
+<style>
+.row.g-4 { --bs-gutter-x: 2rem; --bs-gutter-y: 2rem; }
+.card.task-card { margin-bottom: 0; }
+.card.task-card .card-body { padding: 1.5rem 1.5rem 1.2rem 1.5rem; }
+.card.task-card .badge, .card.task-card .text-muted { margin-right: 0.5rem; margin-bottom: 0.25rem; }
+.card.task-card .d-flex.gap-2 { gap: 0.75rem !important; }
+@media (max-width: 767px) { .card.task-card .card-body { padding: 1rem 0.7rem 0.7rem 0.7rem; } }
+
+.task-card {
+    min-height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(34,34,59,0.07);
+    border: none;
+    transition: box-shadow 0.3s, background 0.3s;
+}
+
+.task-card:hover {
+    box-shadow: 0 6px 18px rgba(34,34,59,0.12);
+    background: var(--hover-bg, #f1f3f7);
+}
+
+.task-card .card-body {
+    padding: 1.2rem 1.3rem 1rem 1.3rem;
+}
+
+.task-card .badge {
+    font-size: 0.95rem;
+    padding: 0.5em 0.8em;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.task-actions {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.priority-alta {
+    border-left: 6px solid #dc3545;
+}
+.priority-média {
+    border-left: 6px solid #ffc107;
+}
+.priority-baixa {
+    border-left: 6px solid #0dcaf0;
+}
+
+@media (max-width: 767px) {
+    .task-card .card-body {
+        padding: 1rem 0.7rem 0.7rem 0.7rem;
+    }
+}
+
+#addTaskBtn:hover, #addTaskBtn:focus {
+    background: #0056b3;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(34,34,59,0.18);
+    transform: scale(1.08);
+}
+@media (max-width: 767px) {
+    #addTaskBtn {
+        bottom: 16px;
+        right: 16px;
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+<script>
+document.querySelectorAll('#filterForm select, #filterForm input').forEach(element => {
+    element.addEventListener('change', () => {
+        document.getElementById('filterForm').submit();
+    });
+});
+
+document.querySelectorAll('.delete-task').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (confirm('Tem certeza que deseja excluir esta tarefa?')) {
+            this.closest('form').submit();
+        }
+    });
+});
+
+// Função para fechar o modal e restaurar o estado do body
+function closeEditTaskModal() {
+  document.getElementById('editTaskModal').style.display = 'none';
+}
+// Fecha o modal ao clicar no X
+  document.getElementById('closeEditModal').onclick = closeEditTaskModal;
+// Fecha o modal ao clicar no fundo escurecido
+  document.getElementById('editTaskModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeEditTaskModal();
+    }
+  });
+</script> 

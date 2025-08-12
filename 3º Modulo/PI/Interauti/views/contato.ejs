@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+<div class="container mt-5 page-transition fade-in-dashboard">
+    <div class="row justify-content-center fade-in-dashboard">
+        <div class="col-md-8 col-lg-6 fade-in-dashboard">
+            <div class="card shadow-sm fade-in-dashboard">
+                <div class="card-header bg-primary text-white fade-in-dashboard">
+                    <h2 class="mb-0 fade-in-dashboard"><i class="fas fa-envelope me-2 fade-in-dashboard"></i>Contate-nos</h2>
+                </div>
+                <div class="card-body fade-in-dashboard">
+                    <form method="POST" action="/contatens" class="fade-in-dashboard">
+                        <div class="mb-3 fade-in-dashboard">
+                            <label for="nome" class="form-label fade-in-dashboard">Nome</label>
+                            <input type="text" id="nome" name="nome" class="form-control input fade-in-dashboard" required>
+                        </div>
+                        <div class="mb-3 fade-in-dashboard">
+                            <label for="email" class="form-label fade-in-dashboard">Email</label>
+                            <input type="email" id="email" name="email" class="form-control input fade-in-dashboard" required>
+                        </div>
+                        <div class="mb-3 fade-in-dashboard">
+                            <label for="mensagem" class="form-label fade-in-dashboard">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" rows="4" class="form-control input fade-in-dashboard" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fade-in-dashboard">Enviar</button>
+                    </form>
+                    <hr class="fade-in-dashboard">
+                    <p class="mb-0 fade-in-dashboard">Ou envie um email para: <a href="mailto:interauti366@gmail.com">interauti366@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      const elements = document.querySelectorAll('.fade-in-dashboard');
+      elements.forEach((el, i) => {
+        setTimeout(() => {
+          el.classList.add('active');
+        }, i * 40);
+      });
+    }, 2000);
+  });
+</script>
+<%- include('partials/footer') %> 

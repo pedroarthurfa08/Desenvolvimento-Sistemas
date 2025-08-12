@@ -1,0 +1,317 @@
+/* Tema Claro */
+[data-theme="light"] {
+    --bg-color: #f8f9fa;
+    --text-color: #212529;
+    --card-bg: #fff;
+    --navbar-bg: #0d6efd;
+    --navbar-text: #fff;
+}
+
+/* Tema Escuro */
+[data-theme="dark"] {
+    --bg-color: #181a1b;
+    --text-color: #f8f9fa;
+    --card-bg: #63a9eb;
+    --navbar-bg: #23272b;
+    --navbar-text: #f8f9fa;
+}
+
+body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+.card, .modal-content {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+.navbar, .navbar.bg-primary {
+    background-color: var(--navbar-bg) !important;
+    color: var(--navbar-text) !important;
+}
+
+.navbar .navbar-brand, .navbar .nav-link, .navbar .dropdown-toggle {
+    color: var(--navbar-text) !important;
+}
+
+.btn-outline-light {
+    color: var(--navbar-text) !important;
+    border-color: var(--navbar-text) !important;
+}
+
+.btn-outline-light:hover, .btn-outline-light:focus {
+    background-color: var(--navbar-text) !important;
+    color: var(--navbar-bg) !important;
+} 
+
+.input {
+  --input-focus: #2d8cf0;
+  --font-color: #323232;
+  --font-color-sub: #666;
+  --bg-color: #fff;
+  --main-color: #323232;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--font-color);
+  padding: 5px 10px;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--font-color-sub);
+  opacity: 0.8;
+}
+
+.input:focus {
+  border: 2px solid var(--input-focus);
+}
+
+/* Loader customizado LOADING */
+.loader {
+  --ANIMATION-DELAY-MULTIPLIER: 70ms;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.loader span {
+  padding: 0;
+  margin: 0;
+  letter-spacing: -5rem;
+  animation-delay: 0s;
+  transform: translateY(4rem);
+  animation: hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1);
+}
+.loader .l { animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 0); }
+.loader .o { animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 1); }
+.loader .a { animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 2); }
+.loader .d { animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 3); }
+.loader .ispan { animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 4); }
+.loader .n { animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 5); }
+.loader .g { animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 6); }
+.letter { width: fit-content; height: 3rem; }
+.i { margin-inline: 5px; }
+@keyframes hideAndSeek {
+  0% { transform: translateY(4rem); }
+  100% { transform: translateY(0rem); }
+}
+
+/* Loader overlay backgrounds */
+.loader-overlay-dark {
+  background: #111 !important;
+}
+.loader-overlay-light {
+  background: #fff !important;
+}
+/* Loader text azul */
+.loader-text {
+  color: #007bff !important;
+}
+.loader-text .letter path {
+  fill: #007bff !important;
+}
+
+/* Customização do ícone do menu collapse (hambúrguer) */
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+.navbar-toggler-icon {
+  box-shadow: none;
+  transition: box-shadow 0.2s, filter 0.2s;
+  border-radius: 2px !important;
+}
+
+/* Agenda responsiva e animações */
+.agenda-card {
+  margin-bottom: 2rem;
+}
+
+/* --- CALENDÁRIO BONITO E MODERNO --- */
+
+/* Fundo e borda do calendário */
+#calendar {
+  background: rgba(255,255,255,0.85);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 32px rgba(13,110,253,0.10), 0 1.5px 8px rgba(0,0,0,0.07);
+  padding: 1.2rem 0.5rem 0.5rem 0.5rem;
+  border: 1.5px solid #e3eafc;
+  margin-bottom: 1.5rem;
+  transition: background 0.5s, box-shadow 0.5s;
+  min-height: 750px;
+}
+[data-theme="dark"] #calendar {
+  background: rgba(24,26,27,0.97);
+  border: 1.5px solid #23272b;
+  box-shadow: 0 4px 32px rgba(13,110,253,0.13), 0 1.5px 8px rgba(0,0,0,0.18);
+}
+
+/* Título do calendário */
+.fc .fc-toolbar-title {
+  font-size: 1.4rem !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #0d6efd;
+  text-shadow: 0 1px 4px rgba(13,110,253,0.08);
+}
+[data-theme="dark"] .fc .fc-toolbar-title {
+  color: #63a9eb;
+}
+
+/* Botões do calendário */
+.fc .fc-button {
+  border-radius: 0.7rem !important;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(13,110,253,0.07);
+  border: none;
+  background: #e3eafc;
+  color: #0d6efd;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.fc .fc-button:hover, .fc .fc-button:focus {
+  background: #0d6efd;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(13,110,253,0.13);
+  transform: translateY(-2px) scale(1.04);
+}
+[data-theme="dark"] .fc .fc-button {
+  background: #23272b;
+  color: #63a9eb;
+}
+[data-theme="dark"] .fc .fc-button:hover, [data-theme="dark"] .fc .fc-button:focus {
+  background: #63a9eb;
+  color: #23272b;
+}
+
+/* Eventos como cartões bonitos */
+.fc-event {
+  background: #fff !important;
+  color: #0d6efd !important;
+  border: none !important;
+  border-radius: 0.8rem !important;
+  box-shadow: 0 2px 12px rgba(13,110,253,0.10);
+  font-weight: 600;
+  padding: 0.4em 0.7em !important;
+  margin-bottom: 0.2em;
+  transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  font-size: 0.93rem;
+  padding: 0.18em 0.45em !important;
+  min-height: 1.7em;
+}
+.fc-event:hover {
+  box-shadow: 0 6px 24px rgba(13,110,253,0.18);
+  background: #e3eafc !important;
+  color: #0d6efd !important;
+  transform: scale(1.03);
+}
+[data-theme="dark"] .fc-event {
+  background: #23272b !important;
+  color: #63a9eb !important;
+  box-shadow: 0 2px 12px rgba(99,169,235,0.13);
+}
+[data-theme="dark"] .fc-event:hover {
+  background: #63a9eb !important;
+  color: #23272b !important;
+}
+
+/* Destaque de prioridade (exemplo: alta, média, baixa) */
+.fc-event[data-priority="alta"] {
+  border-left: 6px solid #dc3545 !important;
+}
+.fc-event[data-priority="média"] {
+  border-left: 6px solid #ffc107 !important;
+}
+.fc-event[data-priority="baixa"] {
+  border-left: 6px solid #0dcaf0 !important;
+}
+
+/* Animação suave de entrada dos eventos */
+.event-fade-in {
+  animation: eventFadeIn 0.8s cubic-bezier(.4,0,.2,1);
+}
+@keyframes eventFadeIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Animação suave do calendário */
+.calendar-fade {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+}
+.calendar-fade.fade-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Responsividade extra para mobile */
+@media (max-width: 600px) {
+  #calendar {
+    padding: 0.5rem 0.1rem 0.1rem 0.1rem;
+    border-radius: 0.7rem;
+    min-height: 520px;
+  }
+  .fc .fc-toolbar {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.5rem;
+  }
+  .fc .fc-toolbar-chunk {
+    width: 100%;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+  }
+  .fc .fc-button-group {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0.3rem;
+    width: auto;
+    flex: 0 1 auto;
+  }
+  .fc .fc-today-button {
+    margin-left: 0.3rem !important;
+    margin-right: 0.3rem !important;
+  }
+  .fc .fc-toolbar-title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.2rem;
+  }
+  .fc .fc-toolbar-title {
+    font-size: 1.1rem !important;
+  }
+  .fc-event {
+    font-size: 0.89rem;
+    padding: 0.13em 0.3em !important;
+    min-height: 1.4em;
+  }
+}
+
+.fade-in-dashboard {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+}
+.fade-in-dashboard.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+

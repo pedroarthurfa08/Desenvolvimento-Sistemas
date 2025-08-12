@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interauti - Registro</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/stylesheets/register.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/images/favicon.svg" type="image/svg+xml">
+
+    <style>
+        #splash {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(33, 37, 41, 0.97);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.7s;
+        }
+        #splash .splash-icon {
+            font-size: 5rem;
+            color: #0d6efd;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: scale(0.7);
+            animation: splashIn 0.7s 0.1s forwards;
+        }
+        #splash .splash-title {
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: splashIn 0.7s 0.3s forwards;
+        }
+        @keyframes splashIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        #splash.splash-hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #register-content {
+            opacity: 0;
+            display: none;
+            transition: opacity 0.5s;
+        }
+        #register-content.visible {
+            display: block !important;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="dark-auth">
+    <div id="splash">
+        <i class="fas fa-user-plus splash-icon"></i>
+        <div class="splash-title">Interauti</div>
+    </div>
+    <div id="register-content">
+        <div class="container d-flex align-items-center justify-content-center min-vh-100">
+            <div class="row justify-content-center w-100">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="brand-center">
+                                <i class="fas fa-user-plus tasks-icon"></i>
+                                <div class="brand-title">Interauti</div>
+                            </div>
+                            <div class="form-content">
+                                <div class="text-center mb-4">
+                                    <p>Junte-se ao Interauti</p>
+                                </div>
+                                <% if (error) { %>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <i class="fas fa-exclamation-circle me-2"></i>
+                                        <%= error %>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                <% } %>
+                                <form action="/register" method="POST">
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <span class="input-icon">
+                                                <i class="fas fa-user"></i>
+                                            </span>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Nome" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <span class="input-icon">
+                                                <i class="fas fa-envelope"></i>
+                                            </span>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="input-group">
+                                            <span class="input-icon">
+                                                <i class="fas fa-lock"></i>
+                                            </span>
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-user-plus me-2"></i>Criar Conta
+                                        </button>
+                                    </div>
+                                </form>
+                                <div class="text-center mt-4">
+                                    <p class="mb-0">Já tem uma conta? 
+                                        <a href="/login" class="text-primary text-decoration-none">
+                                            <i class="fas fa-arrow-left me-1"></i> Fazer Login
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById('splash').classList.add('splash-hide');
+                setTimeout(function() {
+                    document.getElementById('splash').style.display = 'none';
+                    var registerContent = document.getElementById('register-content');
+                    registerContent.style.display = 'block';
+                    void registerContent.offsetWidth;
+                    registerContent.classList.add('visible');
+                }, 700);
+            }, 1200);
+        });
+    </script>
+</body>
+</html> 

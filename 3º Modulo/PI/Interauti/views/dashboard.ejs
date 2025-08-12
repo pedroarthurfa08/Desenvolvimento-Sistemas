@@ -1,0 +1,182 @@
+<%- include('partials/header') %>
+
+<div class="container mt-5 page-transition fade-in-dashboard">
+    <div class="row justify-content-center fade-in-dashboard">
+        <div class="col-md-10 col-lg-8 fade-in-dashboard">
+
+            <!-- Painel de Estatísticas Diárias -->
+            <div class="card shadow-sm mb-4 fade-in-dashboard">
+                <div class="card-header bg-primary text-white fade-in-dashboard">
+                    <h2 class="mb-0 fade-in-dashboard"><i class="fas fa-chart-bar me-2 fade-in-dashboard"></i>Desempenho Diário</h2>
+                </div>
+                <div class="card-body fade-in-dashboard">
+                    <div class="row text-center fade-in-dashboard">
+                        <div class="col-6 col-md-4 mb-3 fade-in-dashboard">
+                            <div class="p-3 bg-light border rounded fade-in-dashboard">
+                                <i class="fas fa-check-circle fa-2x text-success fade-in-dashboard"></i>
+                                <h5 class="mt-2 text-dark fade-in-dashboard">Atividades Concluídas</h5>
+                                <h3 class="text-success fade-in-dashboard"><%= stats ? stats.daily.completedPercent : 0 %>%</h3>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 mb-3 fade-in-dashboard">
+                            <div class="p-3 bg-light border rounded fade-in-dashboard">
+                                <i class="fas fa-clock fa-2x text-primary fade-in-dashboard"></i>
+                                <h5 class="mt-2 text-dark fade-in-dashboard">Pontualidade</h5>
+                                <h3 class="text-primary fade-in-dashboard"><%= stats ? stats.daily.punctuality : 0 %>%</h3>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 mb-3 fade-in-dashboard">
+                            <div class="p-3 bg-light border rounded fade-in-dashboard">
+                                <i class="fas fa-bed fa-2x text-danger fade-in-dashboard"></i>
+                                <h5 class="mt-2 text-dark fade-in-dashboard">Procrastinação</h5>
+                                <h3 class="text-danger fade-in-dashboard"><%= stats ? stats.daily.procrastination : 0 %>%</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% if (stats && stats.daily.completedPercent < 100) { %>
+                    <div class="alert alert-warning mt-3 fade-in-dashboard">
+                        <i class="fas fa-exclamation-circle fade-in-dashboard"></i> Algumas atividades não foram concluídas ou feitas no horário. Tente manter uma rotina mais equilibrada.
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+
+            <!-- Painel de Estatísticas Mensais -->
+            <div class="card shadow-sm mb-4 fade-in-dashboard">
+                <div class="card-header bg-info text-white fade-in-dashboard">
+                    <h2 class="mb-0 fade-in-dashboard"><i class="fas fa-calendar-alt me-2 fade-in-dashboard"></i>Desempenho Mensal</h2>
+                </div>
+                <div class="card-body fade-in-dashboard">
+                    <div class="row text-center fade-in-dashboard">
+                        <div class="col-6 col-md-3 mb-3 fade-in-dashboard">
+                            <div class="p-3 bg-light border rounded fade-in-dashboard">
+                                <i class="fas fa-check-double fa-2x text-success fade-in-dashboard"></i>
+                                <h5 class="mt-2 text-dark fade-in-dashboard">Tarefas Concluídas</h5>
+                                <h3 class="text-success fade-in-dashboard"><%= stats ? stats.monthly.completedPercent : 0 %>%</h3>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-3 fade-in-dashboard">
+                            <div class="p-3 bg-light border rounded fade-in-dashboard">
+                                <i class="fas fa-bolt fa-2x text-warning fade-in-dashboard"></i>
+                                <h5 class="mt-2 text-dark fade-in-dashboard">Produtividade</h5>
+                                <h3 class="text-warning fade-in-dashboard"><%= stats ? stats.monthly.productivity : 0 %></h3>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-3 fade-in-dashboard">
+                            <div class="p-3 bg-light border rounded fade-in-dashboard">
+                                <i class="fas fa-calendar-check fa-2x text-primary fade-in-dashboard"></i>
+                                <h5 class="mt-2 text-dark fade-in-dashboard">Dias Ativos</h5>
+                                <h3 class="text-primary fade-in-dashboard"><%= stats ? stats.monthly.activeDays : 0 %>/<%= stats ? stats.monthly.daysInMonth : 30 %></h3>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-3 fade-in-dashboard">
+                            <div class="p-3 bg-light border rounded fade-in-dashboard">
+                                <i class="fas fa-exclamation-triangle fa-2x text-danger fade-in-dashboard"></i>
+                                <h5 class="mt-2 text-dark fade-in-dashboard">Tarefas Atrasadas</h5>
+                                <h3 class="text-danger fade-in-dashboard"><%= stats ? stats.monthly.overduePercent : 0 %>%</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumo Geral -->
+            <div class="card shadow-sm mb-4 fade-in-dashboard">
+                <div class="card-header bg-secondary text-white fade-in-dashboard">
+                    <h2 class="mb-0 fade-in-dashboard"><i class="fas fa-info-circle me-2 fade-in-dashboard"></i>Resumo Geral</h2>
+                </div>
+                <div class="card-body fade-in-dashboard">
+                    <ul class="list-group list-group-flush border rounded fade-in-dashboard">
+                        <li class="list-group-item d-flex justify-content-between fade-in-dashboard">
+                            <strong class="fade-in-dashboard">Total de Atividades Concluídas:</strong>
+                            <span class="fade-in-dashboard"><%= stats ? stats.general.totalCompleted : 0 %></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between fade-in-dashboard">
+                            <strong class="fade-in-dashboard">Média de Pontualidade:</strong>
+                            <span class="fade-in-dashboard"><%= stats ? stats.general.avgPunctuality : 0 %>%</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between fade-in-dashboard">
+                            <strong class="fade-in-dashboard">Maior sequência de dias produtivos:</strong>
+                            <span class="fade-in-dashboard"><%= stats ? stats.general.maxProductiveStreak : 0 %> dias</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between fade-in-dashboard">
+                            <strong class="fade-in-dashboard">Tempo médio por tarefa:</strong>
+                            <span class="fade-in-dashboard"><%= stats ? stats.general.avgDuration : 0 %> minutos</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Agenda -->
+            <div class="card shadow-sm fade-in-dashboard">
+                <div class="card-header bg-success text-white fade-in-dashboard">
+                    <h4 class="mb-0 fade-in-dashboard"><i class="fas fa-calendar-alt me-2 fade-in-dashboard"></i>Agenda de Compromissos</h4>
+                </div>
+                <div class="card-body fade-in-dashboard">
+                    <ul class="list-group fade-in-dashboard">
+                        <% if (tasks && tasks.length > 0) { %>
+                            <% tasks.forEach(function(task) { %>
+                                <% if (task.status !== 'concluída') { %>
+                                <li class="list-group-item d-flex justify-content-between align-items-center fade-in-dashboard">
+                                    <span class="fade-in-dashboard"><%= task.title %></span>
+                                    <% if (task.time || task.date) { %>
+                                        <span class="badge bg-danger rounded-pill fade-in-dashboard">
+                                            <%= task.time ? task.time.substring(0,5) : '' %> - <%= task.date ? new Date(task.date).toLocaleDateString('pt-BR') : '' %>
+                                        </span>
+                                    <% } %>
+                                </li>
+                                <% } %>
+                            <% }); %>
+                        <% } else { %>
+                            <li class="list-group-item text-center text-muted fade-in-dashboard">Nenhum compromisso aberto.</li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tarefas Concluídas -->
+            <div class="card shadow-sm mt-4 fade-in-dashboard">
+                <div class="card-header bg-secondary text-white fade-in-dashboard">
+                    <h4 class="mb-0 fade-in-dashboard"><i class="fas fa-check-circle me-2 fade-in-dashboard"></i>Tarefas Concluídas</h4>
+                </div>
+                <div class="card-body fade-in-dashboard">
+                    <ul class="list-group fade-in-dashboard">
+                        <% if (tasks && tasks.length > 0 && tasks.some(task => task.status === 'concluída')) { %>
+                            <% tasks.forEach(function(task) { %>
+                                <% if (task.status === 'concluída') { %>
+                                <li class="list-group-item d-flex justify-content-between align-items-center fade-in-dashboard">
+                                    <span class="fade-in-dashboard"><%= task.title %></span>
+                                    <% if (task.time || task.date) { %>
+                                        <span class="badge bg-success rounded-pill fade-in-dashboard">
+                                            <%= task.time ? task.time.substring(0,5) : '' %> - <%= task.date ? new Date(task.date).toLocaleDateString('pt-BR') : '' %>
+                                        </span>
+                                    <% } %>
+                                </li>
+                                <% } %>
+                            <% }); %>
+                        <% } else { %>
+                            <li class="list-group-item text-center text-muted fade-in-dashboard">Nenhuma tarefa concluída.</li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Aguarda o loader sumir (3s) e anima os elementos
+    setTimeout(function() {
+      const elements = document.querySelectorAll('.fade-in-dashboard');
+      elements.forEach((el, i) => {
+        setTimeout(() => {
+          el.classList.add('active');
+        }, i * 40);
+      });
+    }, 2000);
+  });
+</script>

@@ -1,0 +1,151 @@
+<div class="card task-card priority-<%= task.priority %>" data-task-id="<%= task._id %>">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+            <h5 class="card-title mb-0">
+                <%= task.title %>
+            </h5>
+            <div class="task-actions ms-4 d-flex gap-2">
+                <button type="button" class="btn btn-sm btn-outline-primary view-task-btn" data-task-id="<%= task._id %>">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-warning edit-task-btn" data-task-id="<%= task._id %>">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <form action="/tasks/<%= task.id %>/delete" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-outline-danger delete-task" data-tooltip="Excluir">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <% if (task.description) { %>
+            <p class="card-text text-muted small mb-2">
+                <%= task.description.length > 100 ? task.description.substring(0, 100) + '...' : task.description %>
+            </p>
+        <% } %>
+
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+            <span class="badge bg-<%= task.priority === 'alta' ? 'danger' : task.priority === 'média' ? 'warning' : 'info' %>">
+                <%= task.priority.charAt(0).toUpperCase() + task.priority.slice(1) %>
+            </span>
+            
+            <% if (task.date) { %>
+                <span class="text-muted small" data-tooltip="Data de vencimento">
+                    <i class="fas fa-calendar"></i>
+                    <%= new Date(task.date).toLocaleDateString('pt-BR') %>
+                </span>
+            <% } %>
+
+            <% if (task.tags && task.tags.length > 0) { %>
+                <div class="d-flex gap-1">
+                    <% task.tags.forEach(tag => { %>
+                        <span class="badge bg-secondary small"><%= tag %></span>
+                    <% }); %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Modal Visualizar Tarefa -->
+    <div class="modal fade view-task-modal" id="viewTaskModal-<%= task._id %>" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Detalhes da Tarefa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Título:</strong> <%= task.title %></p>
+            <p><strong>Descrição:</strong> <%= task.description %></p>
+            <p><strong>Prioridade:</strong> <%= task.priority %></p>
+            <p><strong>Status:</strong> <%= task.status %></p>
+            <% if (task.date) { %>
+              <p><strong>Data:</strong> <%= new Date(task.date).toLocaleDateString('pt-BR') %></p>
+            <% } %>
+            <% if (task.tags && task.tags.length > 0) { %>
+              <p><strong>Tags:</strong> <%= task.tags.join(', ') %></p>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Editar Tarefa -->
+    <div class="modal fade edit-task-modal" id="editTaskModal-<%= task._id %>" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar Tarefa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Aqui você pode incluir um formulário de edição -->
+            <form action="/tasks/<%= task.id %>?_method=PUT" method="POST">
+              <div class="mb-3">
+                <label for="title-<%= task._id %>" class="form-label">Título</label>
+                <input type="text" class="form-control" id="title-<%= task._id %>" name="title" value="<%= task.title %>" required>
+              </div>
+              <div class="mb-3">
+                <label for="description-<%= task._id %>" class="form-label">Descrição</label>
+                <textarea class="form-control" id="description-<%= task._id %>" name="description"><%= task.description %></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="priority-<%= task._id %>" class="form-label">Prioridade</label>
+                <select class="form-select" id="priority-<%= task._id %>" name="priority">
+                  <option value="baixa" <%= task.priority === 'baixa' ? 'selected' : '' %>>Baixa</option>
+                  <option value="média" <%= task.priority === 'média' ? 'selected' : '' %>>Média</option>
+                  <option value="alta" <%= task.priority === 'alta' ? 'selected' : '' %>>Alta</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="status-<%= task._id %>" class="form-label">Status</label>
+                <select class="form-select" id="status-<%= task._id %>" name="status">
+                  <option value="pendente" <%= task.status === 'pendente' ? 'selected' : '' %>>Pendente</option>
+                  <option value="em_andamento" <%= task.status === 'em_andamento' ? 'selected' : '' %>>Em andamento</option>
+                  <option value="concluída" <%= task.status === 'concluída' ? 'selected' : '' %>>Concluída</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="date-<%= task._id %>" class="form-label">Data</label>
+                <input type="date" class="form-control" id="date-<%= task._id %>" name="date" value="<%= task.date ? new Date(task.date).toISOString().substr(0,10) : '' %>">
+              </div>
+              <div class="mb-3">
+                <label for="time-<%= task._id %>" class="form-label">Hora</label>
+                <input type="time" class="form-control" id="time-<%= task._id %>" name="time" value="<%= task.time ? task.time.substring(0,5) : '' %>">
+              </div>
+              <div class="mb-3">
+                <label for="duration-<%= task._id %>" class="form-label">Duração (minutos)</label>
+                <input type="number" class="form-control" id="duration-<%= task._id %>" name="duration" min="0" value="<%= task.duration || '' %>">
+              </div>
+              <div class="mb-3">
+                <label for="tags-<%= task._id %>" class="form-label">Tags (separadas por vírgula)</label>
+                <input type="text" class="form-control" id="tags-<%= task._id %>" name="tags" value="<%= task.tags ? task.tags.join(', ') : '' %>">
+              </div>
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+// Ganchos para abrir os modais (requer Bootstrap 5)
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.view-task-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const taskId = btn.getAttribute('data-task-id');
+      const modal = document.getElementById('viewTaskModal-' + taskId);
+      if (modal) new bootstrap.Modal(modal).show();
+    });
+  });
+  document.querySelectorAll('.edit-task-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const taskId = btn.getAttribute('data-task-id');
+      const modal = document.getElementById('editTaskModal-' + taskId);
+      if (modal) new bootstrap.Modal(modal).show();
+    });
+  });
+});
+</script> 

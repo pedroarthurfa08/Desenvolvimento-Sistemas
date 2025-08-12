@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-4">Editar Operação</h3>
+          <form action="/operacoes/<%= operacao.id %>/editar" method="POST">
+            <div class="mb-3">
+              <label for="inputData" class="form-label">Data</label>
+              <input type="date" class="form-control" name="data" id="inputData" required value="<%= operacao.data ? new Date(operacao.data).toISOString().split('T')[0] : '' %>">
+            </div>
+            <div class="mb-3">
+              <label for="inputAtivo" class="form-label">Código do ativo</label>
+              <input type="text" class="form-control" name="ativo" id="inputAtivo" required pattern="[A-Z]{4}\d{1,2}" value="<%= operacao.ativo %>">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Tipo de operação</label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tipoDeOperacao" id="inputTipoCompra" value="compra" <%= operacao.tipoDeOperacao === 'compra' ? 'checked' : '' %>>
+                <label class="form-check-label" for="inputTipoCompra">Compra</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tipoDeOperacao" id="inputTipoVenda" value="venda" <%= operacao.tipoDeOperacao === 'venda' ? 'checked' : '' %>>
+                <label class="form-check-label" for="inputTipoVenda">Venda</label>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="inputQuantidade" class="form-label">Quantidade</label>
+              <input type="number" class="form-control" name="quantidade" id="inputQuantidade" required min="1" step="1" value="<%= operacao.quantidade %>">
+            </div>
+            <div class="mb-3">
+              <label for="inputPreco" class="form-label">Preço unitário</label>
+              <input type="number" class="form-control" name="preco" id="inputPreco" required min="0.01" step="0.01" value="<%= operacao.preco %>">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

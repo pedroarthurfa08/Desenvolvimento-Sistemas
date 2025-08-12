@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <h3 class="card-title mb-4">Minhas Operações</h3>
+      <form class="row g-3 mb-3" method="get" action="/operacoes/ativo/" onsubmit="this.action += this.ativo.value;">
+        <div class="col-auto">
+          <input type="text" class="form-control" name="ativo" placeholder="Filtrar por código do ativo" required pattern="[A-Z]{4}\d{1,2}">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-outline-primary">Filtrar</button>
+        </div>
+      </form>
+      <table class="table table-striped table-bordered align-middle text-center">
+        <thead class="table-primary">
+          <tr>
+            <th>Data</th>
+            <th>Tipo de operação</th>
+            <th>Código do ativo</th>
+            <th>Quantidade</th>
+            <th>Preço unitário</th>
+            <th>Valor Bruto</th>
+            <th>Taxa B3</th>
+            <th>Valor Líquido</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let i = 0; i < operacoes.length; i++) { %>
+            <% const operacao = operacoes[i]; %>
+            <tr>
+              <td><%= operacao.data ? new Date(operacao.data).toLocaleDateString('pt-BR') : '' %></td>
+              <td class="text-capitalize"><%= operacao.tipoDeOperacao %></td>
+              <td>
+                <% if (/^[A-Z]{4}\d{1,2}$/.test(operacao.ativo)) { %>
+                  <span class="badge bg-success"><%= operacao.ativo %></span>
+                <% } else { %>
+                  <span class="badge bg-danger"><%= operacao.ativo %></span>
+                <% } %>
+              </td>
+              <td><%= operacao.quantidade %></td>
+              <td>R$ <%= Number(operacao.preco).toFixed(2) %></td>
+              <td>R$ <%= Number(operacao.valorBruto).toFixed(2) %></td>
+              <td>R$ <%= Number(operacao.taxaB3).toFixed(2) %></td>
+              <td>R$ <%= Number(operacao.valorLiquido).toFixed(2) %></td>
+              <td>
+                <a href="/operacoes/<%= operacao.id %>/editar" class="btn btn-sm btn-warning">Editar</a>
+                <form action="/operacoes/<%= operacao.id %>/excluir" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta operação?');">
+                  <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <div class="text-end">
+        <a class="btn btn-success" href="/nova_operacao">Cadastrar nova operação</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-4 page-transition fade-in-dashboard">
+    <div class="row justify-content-center fade-in-dashboard">
+        <div class="col-md-8 col-lg-6 fade-in-dashboard">
+            <div class="card shadow-sm fade-in-dashboard">
+                <div class="card-header bg-primary text-white fade-in-dashboard">
+                    <h4 class="mb-0 fade-in-dashboard">Configurações do Perfil</h4>
+                </div>
+                <div class="card-body fade-in-dashboard">
+                    <% const successMsg = typeof success !== 'undefined' ? success : null; %>
+                    <% const errorMsg = typeof error !== 'undefined' ? error : null; %>
+                    <% if (successMsg && successMsg.length) { %>
+                        <div class="alert alert-success fade-in-dashboard"><%= successMsg %></div>
+                    <% } %>
+                    <% if (errorMsg && errorMsg.length) { %>
+                        <div class="alert alert-danger fade-in-dashboard"><%= errorMsg %></div>
+                    <% } %>
+
+                    <!-- Foto de perfil -->
+                    <div class="text-center mb-4 fade-in-dashboard">
+                        <% if (user.photoUrl) { %>
+                            <img src="<%= user.photoUrl %>" alt="" class="rounded-circle shadow mb-2 mx-auto d-block fade-in-dashboard" style="width: 210px; height: 210px; object-fit: cover; border: 3px solid #0d6efd; background: #fff;">
+                        <% } else { %>
+                            <div class="rounded-circle shadow mb-2 d-flex align-items-center justify-content-center mx-auto fade-in-dashboard" style="width: 210px; height: 210px; border: 3px solid #0d6efd; background: #f8f9fa;">
+                                <i class="fas fa-user fade-in-dashboard" style="font-size: 80px; color: #6c757d;"></i>
+                            </div>
+                        <% } %>
+                        <div class="d-flex justify-content-center gap-3 mt-2 fade-in-dashboard">
+                            <form action="/profile/photo" method="POST" enctype="multipart/form-data" class="d-flex gap-2 fade-in-dashboard">
+                                <input type="file" name="photo" id="photoInput" accept="image/*" class="d-none fade-in-dashboard" onchange="this.form.submit()">
+                                <button type="button" class="btn btn-light rounded-circle shadow-sm fade-in-dashboard" onclick="document.getElementById('photoInput').click()" title="Enviar foto">
+                                    <i class="fas fa-upload text-primary fade-in-dashboard"></i>
+                                </button>
+                                <button type="button" class="btn btn-light rounded-circle shadow-sm fade-in-dashboard" onclick="document.getElementById('photoInput').click()" title="Escolher foto">
+                                    <i class="fas fa-camera text-primary fade-in-dashboard"></i>
+                                </button>
+                            </form>
+                            <form action="/profile/photo/remove" method="POST" class="fade-in-dashboard">
+                                <button type="submit" class="btn btn-danger rounded-circle shadow-sm fade-in-dashboard" title="Remover foto" style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-trash fade-in-dashboard"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <form action="/profile" method="POST" class="fade-in-dashboard">
+                        <div class="mb-3 fade-in-dashboard">
+                            <label for="name" class="form-label fade-in-dashboard">Nome</label>
+                            <input type="text" class="form-control input fade-in-dashboard" id="name" name="name" value="<%= user.name %>" required>
+                        </div>
+                        <div class="mb-3 fade-in-dashboard">
+                            <label for="email" class="form-label fade-in-dashboard">Email</label>
+                            <input type="email" class="form-control input fade-in-dashboard" id="email" name="email" value="<%= user.email %>" required>
+                        </div>
+                        <div class="mb-3 fade-in-dashboard">
+                            <label for="theme" class="form-label fade-in-dashboard">Tema</label>
+                            <select class="form-select input fade-in-dashboard" id="theme" name="theme">
+                                <option value="light" <%= user.settings.theme === 'light' ? 'selected' : '' %>>Claro</option>
+                                <option value="dark" <%= user.settings.theme === 'dark' ? 'selected' : '' %>>Escuro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 form-check fade-in-dashboard">
+                            <input type="checkbox" class="form-check-input fade-in-dashboard" id="notifications" name="notifications" <%= user.settings.notifications ? 'checked' : '' %>>
+                            <label class="form-check-label fade-in-dashboard" for="notifications">Receber notificações</label>
+                        </div>
+                        <div class="mb-3 fade-in-dashboard">
+                            <label for="language" class="form-label fade-in-dashboard">Idioma</label>
+                            <select class="form-select input fade-in-dashboard" id="language" name="language">
+                                <option value="pt-BR" <%= user.settings.language === 'pt-BR' ? 'selected' : '' %>>Português</option>
+                                <option value="en" <%= user.settings.language === 'en' ? 'selected' : '' %>>Inglês</option>
+                            </select>
+                        </div>
+                        <div class="d-flex gap-2 fade-in-dashboard">
+                            <button type="submit" class="btn btn-primary fade-in-dashboard">
+                                <i class="fas fa-save fade-in-dashboard"></i> Salvar Alterações
+                            </button>
+                            <a href="/tasks" class="btn btn-secondary fade-in-dashboard">
+                                <i class="fas fa-arrow-left fade-in-dashboard"></i> Voltar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      const elements = document.querySelectorAll('.fade-in-dashboard');
+      elements.forEach((el, i) => {
+        setTimeout(() => {
+          el.classList.add('active');
+        }, i * 40);
+      });
+    }, 2000);
+  });
+</script>
+
+<%- include('../partials/footer') %> 

@@ -1,0 +1,45 @@
+<form action="/tasks/<%= task.id %>?_method=PUT" method="POST">
+  <div class="mb-3">
+    <label for="title" class="form-label">Título</label>
+    <input type="text" class="form-control" id="title" name="title" value="<%= task.title %>" required>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Descrição</label>
+    <textarea class="form-control" id="description" name="description"><%= task.description %></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="priority" class="form-label">Prioridade</label>
+    <select class="form-select" id="priority" name="priority">
+      <option value="baixa" <%= task.priority === 'baixa' ? 'selected' : '' %>>Baixa</option>
+      <option value="média" <%= task.priority === 'média' ? 'selected' : '' %>>Média</option>
+      <option value="alta" <%= task.priority === 'alta' ? 'selected' : '' %>>Alta</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="date" class="form-label">Data</label>
+    <input type="date" class="form-control" id="date" name="date" value="<%= task.date ? task.date.toISOString().split('T')[0] : '' %>">
+  </div>
+  <div class="mb-3">
+    <label for="time" class="form-label">Hora</label>
+    <input type="time" class="form-control" id="time" name="time" value="<%= task.time || '' %>">
+  </div>
+  <div class="mb-3">
+    <label for="duration" class="form-label">Duração (minutos)</label>
+    <input type="number" class="form-control" id="duration" name="duration" value="<%= task.duration || '' %>">
+  </div>
+  <div class="mb-3">
+    <label for="tags" class="form-label">Tags</label>
+    <input type="text" class="form-control" id="tags" name="tags" value="<%= task.tags ? task.tags.join(', ') : '' %>">
+  </div>
+  <div class="mb-3">
+    <label for="status" class="form-label">Status</label>
+    <select class="form-select" id="status" name="status">
+      <option value="pendente" <%= task.status === 'pendente' ? 'selected' : '' %>>Pendente</option>
+      <option value="concluída" <%= task.status === 'concluída' ? 'selected' : '' %>>Concluída</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-success">Salvar</button>
+  <% if (task.status !== 'concluída') { %>
+    <button type="submit" name="status" value="concluída" class="btn btn-primary ms-2">Marcar como Concluída</button>
+  <% } %>
+</form> 

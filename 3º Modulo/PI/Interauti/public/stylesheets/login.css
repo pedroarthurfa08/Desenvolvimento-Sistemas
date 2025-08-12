@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* fonte padrão */
+}
+
+body.dark-auth {
+    background: linear-gradient(135deg, #23272f 0%, #0d6efd 100%);
+    min-height: 100vh;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.card {
+    background: rgba(33, 37, 41, 0.85) !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15) !important;
+    border: none !important;
+}
+
+.card-body {
+    color: #fff !important;
+}
+
+.brand-center {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.brand-title {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.tasks-icon {
+    font-size: 2.5rem;
+    color: #0d6efd;
+    margin-bottom: 0.5rem;
+}
+
+.form-content {
+    margin-top: 1.5rem;
+}
+
+.form-control {
+    border-radius: 0.75rem !important;
+    border: 1px solid #ced4da !important;
+    background: rgba(255,255,255,0.08) !important;
+    color: #fff !important;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    background: rgba(255,255,255,0.15) !important;
+    color: #fff !important;
+    border-color: #0d6efd !important;
+    box-shadow: 0 0 0 0.2rem rgba(13,110,253,.15) !important;
+}
+
+.form-control::placeholder {
+    color: #adb5bd !important;
+    opacity: 1;
+}
+
+.input-group .input-icon {
+    color: #adb5bd;
+    margin-right: 0.5rem;
+}
+
+.form-label {
+    color: #fff !important;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: #0d6efd !important;
+    border: none !important;
+    border-radius: 0.75rem !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #0b5ed7 !important;
+}
+
+a.text-primary {
+    color: #0d6efd !important;
+}
+
+a.text-primary:hover {
+    color: #0a58ca !important;
+    text-decoration: underline;
+}
+
+.alert {
+    border-radius: 0.75rem;
+    font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+    .card {
+        border-radius: 0.5rem !important;
+    }
+    .brand-title {
+        font-size: 1.5rem;
+    }
+    .tasks-icon {
+        font-size: 2rem;
+    }
+}

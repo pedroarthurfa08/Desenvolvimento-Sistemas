@@ -1,0 +1,31 @@
+<div class="div-form">
+    <form action="/salvar_operacao" method="POST">
+        <div>
+            <label for="inputData">Data</label>
+            <input type="date" name="data" id="inputData" required>
+        </div>
+        <div>
+            <label for="inputTipo">Código do ativo</label>
+            <input type="text" name="ativo" id="inputAtivo" placeholder="Código do ativo" required>   
+        </div>
+        <div class="radio-group">
+            <label for="inputTipo">Tipo de operação:</label>
+            <br><br>
+            <input type="radio" name="tipoDeOperacao" id="inputTipoCompra" value="compra" checked>
+            <label for="inputTipoCompra">Compra</label>
+            <input type="radio" name="tipoDeOperacao" id="inputTipoVenda" value="venda">
+            <label for="inputTipoVenda">Venda</label>
+        </div>
+        <div>
+            <label for="inputQuantidade">Quantidade</label>
+            <input type="number" name="quantidade" id="inputQuantidade" required min="1" step="1">
+        </div>
+        <div>
+            <label for="inputPreco">Preço unitário</label>
+            <input type="number" name="preco" id="inputPreco" required min="0.01" step="0.01">
+        </div>
+        <div>
+            <input type="submit" value="Registrar operação">
+        </div>
+    </form>
+</div>

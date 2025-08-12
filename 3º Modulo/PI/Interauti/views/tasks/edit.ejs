@@ -1,0 +1,150 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-4 page-transition">
+    <% if (typeof error !== 'undefined' && error) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
+    <% } %>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-white">
+                    <h4 class="mb-0">Editar Tarefa</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/tasks/<%= task.id %>" method="POST">
+                        <input type="hidden" name="_method" value="PUT">
+                        
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="title" name="title" value="<%= task.title %>" required minlength="3" maxlength="100" data-tooltip="Digite um título para sua tarefa">
+                            <div class="form-text">O título deve ter entre 3 e 100 caracteres</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="description" name="description" rows="3" maxlength="500" data-tooltip="Adicione detalhes sobre sua tarefa"><%= task.description %></textarea>
+                            <div class="form-text">A descrição pode ter até 500 caracteres</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select class="form-select" id="status" name="status" data-tooltip="Selecione o status atual da tarefa">
+                                        <option value="pendente" <%= task.status === 'pendente' ? 'selected' : '' %>>Pendente</option>
+                                        <option value="em_andamento" <%= task.status === 'em_andamento' ? 'selected' : '' %>>Em Andamento</option>
+                                        <option value="concluída" <%= task.status === 'concluída' ? 'selected' : '' %>>Concluída</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="priority" class="form-label">Prioridade</label>
+                                    <select class="form-select" id="priority" name="priority" data-tooltip="Selecione a prioridade da tarefa">
+                                        <option value="baixa" <%= task.priority === 'baixa' ? 'selected' : '' %>>Baixa</option>
+                                        <option value="média" <%= task.priority === 'média' ? 'selected' : '' %>>Média</option>
+                                        <option value="alta" <%= task.priority === 'alta' ? 'selected' : '' %>>Alta</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Data</label>
+                                    <input type="date" class="form-control" id="date" name="date" value="<%= task.date ? task.date.toISOString().split('T')[0] : '' %>" data-tooltip="Selecione a data de vencimento">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="time" class="form-label">Hora</label>
+                                    <input type="time" class="form-control" id="time" name="time" value="<%= task.time %>" data-tooltip="Selecione o horário">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="duration" class="form-label">Duração (minutos)</label>
+                            <input type="number" class="form-control" id="duration" name="duration" min="0" value="<%= task.duration %>" data-tooltip="Tempo estimado para completar a tarefa">
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fas fa-save"></i> Salvar Alterações
+                            </button>
+                            <a href="/tasks" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Ajuda</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6 class="card-subtitle mb-2 text-muted">Status</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <span class="badge bg-secondary me-2">Pendente</span>
+                                Tarefa ainda não iniciada
+                            </li>
+                            <li class="mb-2">
+                                <span class="badge bg-warning me-2">Em Andamento</span>
+                                Tarefa em desenvolvimento
+                            </li>
+                            <li class="mb-2">
+                                <span class="badge bg-success me-2">Concluída</span>
+                                Tarefa finalizada
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-3">
+                        <h6 class="card-subtitle mb-2 text-muted">Prioridade</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <span class="badge bg-danger me-2">Alta</span>
+                                Tarefas urgentes que precisam ser feitas imediatamente
+                            </li>
+                            <li class="mb-2">
+                                <span class="badge bg-warning me-2">Média</span>
+                                Tarefas importantes mas não urgentes
+                            </li>
+                            <li class="mb-2">
+                                <span class="badge bg-info me-2">Baixa</span>
+                                Tarefas que podem esperar
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-3">
+                        <h6 class="card-subtitle mb-2 text-muted">Data e Hora</h6>
+                        <p class="card-text">
+                            <i class="fas fa-calendar-alt text-primary me-2"></i>
+                            Quando a tarefa deve ser realizada
+                        </p>
+                    </div>
+
+                    <div>
+                        <h6 class="card-subtitle mb-2 text-muted">Duração</h6>
+                        <p class="card-text">
+                            <i class="fas fa-hourglass-half text-primary me-2"></i>
+                            Tempo estimado para completar a tarefa
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %> 
